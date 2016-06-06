@@ -13,8 +13,28 @@ class RegisterView {
     void show() throws Exception {
         // super.start(primaryStage)
         start {
-            stage(title: "messenger", visible: true) {
-                scene(fill: black, width: 530, height: 300) {
+            stage(title: "ConnectMe", visible: true) {
+                scene(width: 1000, height: 775) {
+
+                    borderPane() {
+                        top(align: "center", margin: [10, 0, 10, 0]) {
+                            hbox(height: 100)
+                        }
+                        right(align: "center", margin: [0, 10, 0, 1]) {
+                            button(text: "right")
+                        }
+                        left(align: "center", margin: [0, 10]) {
+                            button(text: "left")
+                        }
+                        bottom(align: "center", margin: [10, 0]) {
+                            button(text: "bottom")
+                        }
+                        /** center example, either construct, center() or standalone node is treated the same.   **/
+                        //center(align: "center") {
+                        label(text: "center")
+                        //}
+                    }
+
                     hbox(padding: 80) {
                         text(text: "Groovy", style: "-fx-font-size: 80pt") {
                             fill linearGradient(endX: 0, stops: [palegreen, seagreen])

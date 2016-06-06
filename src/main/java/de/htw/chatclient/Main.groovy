@@ -2,6 +2,7 @@ package de.htw.chatclient
 
 import de.htw.chatclient.service.RegisterService
 import de.htw.chatclient.views.RegisterView
+import de.htw.chatclient.views.Test
 import groovyx.net.http.HttpResponseException
 import javafx.application.Application
 import javafx.stage.Stage
@@ -15,6 +16,7 @@ class Main  {
 
     public static void main(String[] args) {
         println('Application started')
+        Application.launch(Test.class);
 
 // Beispielhafter Aufruf für Regestrierung eines Users
 // 200 OK --> User wurde regestriert
@@ -22,8 +24,10 @@ class Main  {
         RegisterService registerController = new RegisterService();
 
 
-        RegisterView r = new RegisterView()
-        r.show();//start(primaryStage)
+        //RegisterView r = new RegisterView()
+        //r.show();//start(primaryStage)
+        new Test().start(new Stage())
+
 
         try {
 
