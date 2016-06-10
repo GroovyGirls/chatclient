@@ -17,8 +17,8 @@ class Main  {
 
     public static void main(String[] args) {
         println('Application started')
-        Application.launch(Test.class);
-        //Application.launch(LoginView.class);
+        //Application.launch(Test.class);
+        Application.launch(LoginView.class);
 
 // Beispielhafter Aufruf für Regestrierung eines Users
 // 200 OK --> User wurde regestriert
@@ -28,8 +28,8 @@ class Main  {
 
         //RegisterView r = new RegisterView()
         //r.show();//start(primaryStage)
-        new Test().start(new Stage())
-        //new LoginView().start(new Stage())
+        //new Test().start(new Stage())
+        new LoginView().start(new Stage())
 
 
         try {
