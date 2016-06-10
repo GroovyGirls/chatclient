@@ -1,24 +1,27 @@
-package de.htw.chatclient.views;
+package de.htw.chatclient.views
 
-import javafx.application.Application;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
-import javafx.scene.text.Text;
-import javafx.stage.Stage;
+import javafx.application.Application
+import javafx.geometry.Insets
+import javafx.geometry.Pos
+import javafx.scene.Scene
+import javafx.scene.control.Button
+import javafx.scene.control.Hyperlink
+import javafx.scene.control.Label
+import javafx.scene.control.PasswordField
+import javafx.scene.control.TextField
+import javafx.scene.layout.BorderPane
+import javafx.scene.layout.GridPane
+import javafx.scene.layout.HBox
+import javafx.scene.text.Font
+import javafx.scene.text.FontWeight
+import javafx.scene.text.Text
+import javafx.stage.Stage
 
-import static javafx.application.Application.launch;
 
 /**
- * Created by laura on 30.05.16.
+ * Created by laura on 06.06.16.
  */
-public class Test extends Application {
+class LoginView extends Application {
 
 
     @Override
@@ -50,15 +53,9 @@ public class Test extends Application {
 
         header.getChildren().addAll(LoginHyperlink, RegistrierenHyperlink);
 
-        Text scenetitle = new Text("Werde Teil von ConnectMe");
+        Text scenetitle = new Text("Hier kannst du dich anmelden");
         scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
         grid.add(scenetitle, 0, 0, 2, 1);
-
-        Label UsernameLabel = new Label("Benutzername:");
-        grid.add(UsernameLabel, 0, 1);
-
-        TextField UsernameTextField = new TextField();
-        grid.add(UsernameTextField, 1, 1);
 
         Label EmailLabel = new Label("E-Mail:");
         grid.add(EmailLabel, 0, 2);
@@ -72,15 +69,9 @@ public class Test extends Application {
         PasswordField PasswortField = new PasswordField();
         grid.add(PasswortField, 1, 3);
 
-        Label PwConfirmationLabel = new Label("Passwort wiederholen");
-        grid.add(PwConfirmationLabel, 0, 4);
-
-        PasswordField PwConfirmationField = new PasswordField();
-        grid.add(PwConfirmationField, 1, 4);
-
-        Button RegistrationButton = new Button("Registrier dich jetzt");
-        RegistrationButton.setStyle("-fx-base: #29CCE9;");
-        grid.add(RegistrationButton, 0, 5);
+        Button LoginButton = new Button("Einloggen");
+        LoginButton.setStyle("-fx-base: #29CCE9;");
+        grid.add(LoginButton, 0, 5);
 
         Scene scene = new Scene(border, 1000, 775);
         primaryStage.setScene(scene);
