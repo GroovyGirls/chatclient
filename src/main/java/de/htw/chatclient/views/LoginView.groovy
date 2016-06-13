@@ -1,6 +1,8 @@
 package de.htw.chatclient.views
 
 import javafx.application.Application
+import javafx.event.ActionEvent
+import javafx.event.EventHandler
 import javafx.geometry.Insets
 import javafx.geometry.Pos
 import javafx.scene.Scene
@@ -45,13 +47,13 @@ class LoginView extends Application {
         header.setStyle("-fx-background-color: #C8F6FF");
         border.setTop(header);
 
-        Hyperlink LoginHyperlink = new Hyperlink();
-        LoginHyperlink.setText("Einloggen");
+        Hyperlink loginHyperlink = new Hyperlink();
+        loginHyperlink.setText("Einloggen");
 
         Hyperlink RegistrierenHyperlink = new Hyperlink();
         RegistrierenHyperlink.setText("Registrieren");
 
-        header.getChildren().addAll(LoginHyperlink, RegistrierenHyperlink);
+        header.getChildren().addAll(loginHyperlink, RegistrierenHyperlink);
 
         Text scenetitle = new Text("Hier kannst du dich anmelden");
         scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
@@ -78,12 +80,19 @@ class LoginView extends Application {
 
         primaryStage.show();
 
+        //******** EventHandler *********
+        loginHyperlink.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent event) {
+                new LoginView().start(primaryStage);
+            }
+        });
+
+        //******** EventHandler *********
+        RegistrierenHyperlink.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent event) {
+                new Test().start(primaryStage);
+            }
+        });
 
     }
-
-    public static void main(String[] args) {
-        launch(args);
-    }
-
-
 }

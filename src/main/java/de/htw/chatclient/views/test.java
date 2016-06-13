@@ -1,5 +1,6 @@
 package de.htw.chatclient.views;
 
+import de.htw.chatclient.service.RegisterService;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -22,9 +23,12 @@ import static javafx.application.Application.launch;
  */
 public class Test extends Application {
 
+    private TextField usernameTextField;
+    private TextField emailTextField;
+    private Button registrationButton;
 
     @Override
-    public void start(Stage primaryStage) {
+    public void start(final Stage primaryStage) {
 
         primaryStage.setTitle("ConnectMe");
 
@@ -44,13 +48,13 @@ public class Test extends Application {
         header.setStyle("-fx-background-color: #C8F6FF");
         border.setTop(header);
 
-        Hyperlink LoginHyperlink = new Hyperlink();
-        LoginHyperlink.setText("Einloggen");
+        Hyperlink loginHyperlink = new Hyperlink();
+        loginHyperlink.setText("Einloggen");
 
         Hyperlink RegistrierenHyperlink = new Hyperlink();
         RegistrierenHyperlink.setText("Registrieren");
 
-        header.getChildren().addAll(LoginHyperlink, RegistrierenHyperlink);
+        header.getChildren().addAll(loginHyperlink, RegistrierenHyperlink);
 
         Text scenetitle = new Text("Werde Teil von ConnectMe");
         scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
@@ -59,13 +63,13 @@ public class Test extends Application {
         Label UsernameLabel = new Label("Benutzername:");
         grid.add(UsernameLabel, 0, 1);
 
-        TextField UsernameTextField = new TextField();
-        grid.add(UsernameTextField, 1, 1);
+        usernameTextField = new TextField();
+        grid.add(usernameTextField, 1, 1);
 
         Label EmailLabel = new Label("E-Mail:");
         grid.add(EmailLabel, 0, 2);
 
-        TextField emailTextField = new TextField();
+        emailTextField = new TextField();
         grid.add(emailTextField, 1, 2);
 
         Label PasswortLabel = new Label("Passwort:");
@@ -81,18 +85,44 @@ public class Test extends Application {
         grid.add(PwConfirmationField, 1, 4);
 
         //TO DO: Button nicht final machen
-        final Button RegistrationButton = new Button("Registrier dich jetzt");
-        RegistrationButton.setStyle("-fx-base: #29CCE9;");
-        grid.add(RegistrationButton, 0, 5);
+        registrationButton = new Button("Registrier dich jetzt");
+        registrationButton.setStyle("-fx-base: #29CCE9;");
+        grid.add(registrationButton, 0, 5);
 
         Scene scene = new Scene(border, 1000, 775);
         primaryStage.setScene(scene);
 
         //******** EventHandler *********
-        RegistrationButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
+        registrationButton.setOnAction(new EventHandler<ActionEvent>() {
+            //@Override
             public void handle(ActionEvent event) {
-                RegistrationButton.setText("geklickt");
+                String name = usernameTextField.getText();
+                String email = usernameTextField.getText();
+                String passwort = usernameTextField.getText();
+
+                RegisterService regService = new RegisterService();
+                //TODO prüfe ob Mail, Name, PW vorhanden
+                boolean isSuccessful = (Boolean)regService.register(name, email, passwort);
+                if (isSuccessful){
+                    registrationButton.setText("success");
+                }
+                else {
+                    registrationButton.setText("fail");
+                }
+            }
+        });
+
+        //******** EventHandler *********
+        loginHyperlink.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent event) {
+                new LoginView().start(primaryStage);
+            }
+        });
+
+        //******** EventHandler *********
+        RegistrierenHyperlink.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent event) {
+                new Test().start(primaryStage);
             }
         });
 
@@ -102,9 +132,6 @@ public class Test extends Application {
 
     }
 
-    public static void main(String[] args) {
-        launch(args);
-    }
 
 
 }
