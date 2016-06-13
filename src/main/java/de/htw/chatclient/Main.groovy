@@ -3,8 +3,8 @@ package de.htw.chatclient
 import de.htw.chatclient.service.RegisterService
 
 /**
- * Created by vera on 31.05.16.
- */
+* @author vera on 31.05.16.
+*/
 class Main {
 
     static void main(String[] args) {
