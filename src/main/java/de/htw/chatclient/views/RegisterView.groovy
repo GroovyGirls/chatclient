@@ -1,5 +1,6 @@
 package de.htw.chatclient.views
 
+import de.htw.chatclient.service.RegisterService
 import javafx.application.Application
 import javafx.event.ActionEvent
 import javafx.event.EventHandler
@@ -49,18 +50,18 @@ class RegisterView {
                                             margin: [0, 0, 10]) {}
 
                                     label("Benutzername", row: 1, column: 0)
-                                    textField(promptText: "Benutzername eingeben", row: 1, column: 1 )
+                                    textField(id: "usernameTextField", promptText: "Benutzername eingeben", row: 1, column: 1 )
 
                                     label("E-Mail", row: 2, column: 0)
-                                    textField(promptText: "E-Mailadresse eingeben", row: 2, column: 1)
+                                    textField(id: "emailTextField", promptText: "E-Mailadresse eingeben", row: 2, column: 1)
 
                                     label("Passwort", row: 3, column: 0)
-                                    passwordField(promptText: "Passwort eingeben", row: 3, column: 1)
+                                    passwordField(id: "passwordField", promptText: "Passwort eingeben", row: 3, column: 1)
 
                                     label("Passwort wiederholen", row: 4, column: 0)
                                     passwordField(promptText: "Passwort wiederholen", row: 4, column: 1)
 
-                                    button("Registrier dich jetzt", row: 5, column: 0, style: "-fx-base: #29CCE9;")
+                                    button(id: "registrationButton", "Registrier dich jetzt", row: 5, column: 0, style: "-fx-base: #29CCE9;")
 
                                 }
 
@@ -71,6 +72,27 @@ class RegisterView {
                 }
             }
         }
+
+        //******** EventHandler Reg_Button START *********
+        registrationButton.setOnAction(new EventHandler<ActionEvent>() {
+            //@Override
+            public void handle(ActionEvent event) {
+                String name = usernameTextField.getText()
+                String email = emailTextField.getText()
+                String passwort = passwordField.getText()
+
+                RegisterService regService = new RegisterService()
+                //TODO prüfe ob Mail, Name, PW vorhanden
+                boolean isSuccessful = (Boolean)regService.register(name, email, passwort)
+                if (isSuccessful){
+                    registrationButton.setText("success")
+                }
+                else {
+                    registrationButton.setText("fail")
+                }
+            }
+        })
+        //******** EventHandler Reg_Button ENDE *********
     }
 }
 

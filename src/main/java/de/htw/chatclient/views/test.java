@@ -26,6 +26,7 @@ public class Test extends Application {
     private TextField usernameTextField;
     private TextField emailTextField;
     private Button registrationButton;
+    private PasswordField passwordField;
 
     @Override
     public void start(final Stage primaryStage) {
@@ -75,8 +76,8 @@ public class Test extends Application {
         Label PasswortLabel = new Label("Passwort:");
         grid.add(PasswortLabel, 0, 3);
 
-        PasswordField PasswortField = new PasswordField();
-        grid.add(PasswortField, 1, 3);
+        passwordField = new PasswordField();
+        grid.add(passwordField, 1, 3);
 
         Label PwConfirmationLabel = new Label("Passwort wiederholen");
         grid.add(PwConfirmationLabel, 0, 4);
@@ -97,8 +98,8 @@ public class Test extends Application {
             //@Override
             public void handle(ActionEvent event) {
                 String name = usernameTextField.getText();
-                String email = usernameTextField.getText();
-                String passwort = usernameTextField.getText();
+                String email = emailTextField.getText();
+                String passwort = passwordField.getText();
 
                 RegisterService regService = new RegisterService();
                 //TODO prüfe ob Mail, Name, PW vorhanden
