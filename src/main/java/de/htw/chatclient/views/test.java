@@ -1,6 +1,8 @@
 package de.htw.chatclient.views;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -78,12 +80,22 @@ public class Test extends Application {
         PasswordField PwConfirmationField = new PasswordField();
         grid.add(PwConfirmationField, 1, 4);
 
-        Button RegistrationButton = new Button("Registrier dich jetzt");
+        //TO DO: Button nicht final machen
+        final Button RegistrationButton = new Button("Registrier dich jetzt");
         RegistrationButton.setStyle("-fx-base: #29CCE9;");
         grid.add(RegistrationButton, 0, 5);
 
         Scene scene = new Scene(border, 1000, 775);
         primaryStage.setScene(scene);
+
+        //******** EventHandler *********
+        RegistrationButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                RegistrationButton.setText("geklickt");
+            }
+        });
+
 
         primaryStage.show();
 
