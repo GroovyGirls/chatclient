@@ -1,5 +1,6 @@
 package de.htw.chatclient
 
+import de.htw.chatclient.service.LoginService
 import de.htw.chatclient.service.RegisterService
 
 /**
@@ -17,6 +18,14 @@ class Main {
         boolean register = registerController.register('Anna', 'mail422@mail.de', '123')
 
         println(register)
+
+        println("start Login")
+        // Beispielaufruf für Login
+        // true --> user ist nun eingeloggt
+        // false --> einloggen hat nicht funktioniert
+        LoginService loginService = new LoginService();
+        boolean login = loginService.login('mail@mail.de', '123')
+        println("ende Login mit ${login}")
     }
 
 }
