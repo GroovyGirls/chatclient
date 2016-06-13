@@ -20,28 +20,16 @@ class Main {
         //Application.launch(Test.class);
         Application.launch(LoginView.class);
 
-// Beispielhafter Aufruf für Regestrierung eines Users
-// true --> User wurde regestriert
-// false --> mit der Mail gibt es bereits einen User
-        RegisterService registerController = new RegisterService();
-
-
         //RegisterView r = new RegisterView()
         //r.show();//start(primaryStage)
         //new Test().start(new Stage())
         new LoginView().start(new Stage())
 
-
-        try {
-
-            def register = registerController.register('Anna', 'mail@mail.de', '123') // 200 Ok wenn User regestriert
-        } catch (e) {
-            if (e instanceof HttpResponseException) {
-                e.statusCode == Response.Status.CONFLICT.statusCode // Conflict wenn email bereits regestriert
-                println("status code: " + e.statusCode)
-            }
-            println("error: " + e)
-        }
+        // Beispielhafter Aufruf für Regestrierung eines Users
+        // true --> User wurde regestriert
+        // false --> mit der Mail gibt es bereits einen User
+        RegisterService registerController = new RegisterService();
+        boolean register = registerController.register('Anna', 'mail422@mail.de', '123')
 
         println(register)
     }
