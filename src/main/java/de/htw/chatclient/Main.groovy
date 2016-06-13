@@ -11,9 +11,9 @@ import javafx.stage.Stage
 import javax.ws.rs.core.Response
 
 /**
- * Created by vera on 31.05.16.
- */
-class Main  {
+* @author vera on 31.05.16.
+*/
+class Main {
 
     public static void main(String[] args) {
         println('Application started')
@@ -21,8 +21,8 @@ class Main  {
         Application.launch(LoginView.class);
 
 // Beispielhafter Aufruf für Regestrierung eines Users
-// 200 OK --> User wurde regestriert
-// 409 CONFLICT --> mit der Mail gibt es bereits einen User
+// true --> User wurde regestriert
+// false --> mit der Mail gibt es bereits einen User
         RegisterService registerController = new RegisterService();
 
 
@@ -43,7 +43,7 @@ class Main  {
             println("error: " + e)
         }
 
+        println(register)
     }
-
 
 }
