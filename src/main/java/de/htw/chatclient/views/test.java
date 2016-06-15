@@ -116,7 +116,7 @@ public class Test extends Application {
         //******** EventHandler *********
         loginHyperlink.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
-                new LoginView().start(primaryStage);
+                //new LoginView().start(primaryStage);
             }
         });
 

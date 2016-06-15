@@ -1,35 +1,91 @@
 package de.htw.chatclient.views
 
+import de.htw.chatclient.service.RegisterService
 import javafx.application.Application
 import javafx.event.ActionEvent
 import javafx.event.EventHandler
-import javafx.geometry.Insets
-import javafx.geometry.Pos
-import javafx.scene.Scene
-import javafx.scene.control.Button
-import javafx.scene.control.Hyperlink
-import javafx.scene.control.Label
-import javafx.scene.control.PasswordField
-import javafx.scene.control.TextField
-import javafx.scene.layout.BorderPane
-import javafx.scene.layout.GridPane
-import javafx.scene.layout.HBox
-import javafx.scene.text.Font
-import javafx.scene.text.FontWeight
-import javafx.scene.text.Text
-import javafx.stage.Stage
 
+import static groovyx.javafx.GroovyFX.start
+import javafx.stage.Stage
 
 /**
  * Created by laura on 06.06.16.
  */
-class LoginView extends Application {
+class LoginView {
+
+    void show() throws Exception {
+        // super.start(primaryStage)
+        start {
+
+            //imageURL = "http://www.nasa.gov/images/content/611907main_image_2134_800-600.jpg"
+            //"C:/Users/Nadia/Documents/6Semester/ModScript/ConnectMeLogo.jpg"
+            // "C://Users//Nadia//Documents//6Semester//ModScript//ConnectMeLogo.jpg"
+            // "http://www.nasa.gov/images/content/611907main_image_2134_800-600.jpg"
+            //"C:\Users\Nadia\Documents\6Semester\ModScript\ConnectMeLogo.jpg"
 
 
-    @Override
-    public void start(Stage primaryStage) {
 
-        primaryStage.setTitle("ConnectMe");
+            stage(title: "ConnectMe Login", visible: true) {
+                scene(width: 1000, height: 775) {
+
+                    borderPane() {
+
+                        top() {
+                            hbox(padding: 25, style: "-fx-background-color: #C8F6FF") {
+   /*                             imageView(imageURL)
+                                        {
+                                            setWidth: 100
+                                        }
+                                *//* {
+                             height: 50
+                             width: 100
+                         }*/
+                                hyperlink(text: "Einloggen")
+                                hyperlink(text: "Registrieren")
+                            }
+                        }
+                        right(align: "center") {
+                            hbox(padding: 25, style: "-fx-background-color: white") {}
+                        }
+                        left(align: "center") {
+                            hbox(padding: 25, style: "-fx-background-color: white") {}
+                        }
+                        bottom(align: "center") {
+                            hbox(padding: 25, style: "-fx-background-color: white") {}
+                        }
+
+                        center() {
+                            hbox(style: "-fx-background-color: white", alignment: "CENTER") {
+                                gridPane(hgap: 20, vgap: 12, padding: 25, alignment: "CENTER") {
+
+                                    label("Logge dich jetzt hier ein", style: "-fx-font-size: 24px;", row: 0, columnSpan: 2, halignment: "center",
+                                            margin: [0, 0, 10]) {}
+
+                                    label("E-Mail", id: "email", row: 1, column: 0)
+                                    textField(id: "emailTextField", promptText: "E-Mailadresse eingeben", row: 1, column: 1)
+
+                                    label("Passwort", row: 2, column: 0)
+                                    passwordField(id: "passwordField", promptText: "Passwort eingeben", row: 2, column: 1)
+
+
+                                    button(id: "loginButton", "Einloggen", row: 3, columnSpan: 2, halignment: "center", style: "-fx-base: #29CCE9")
+                                    loginButton.setMinWidth(280)
+                                }
+
+                            }
+                        }
+
+                    }
+                }
+            }
+        }
+    }
+
+
+
+
+
+    /*    primaryStage.setTitle("ConnectMe");
 
         GridPane grid = new GridPane();
         grid.setAlignment(Pos.CENTER);
@@ -94,5 +150,5 @@ class LoginView extends Application {
             }
         });
 
-    }
+    */
 }
