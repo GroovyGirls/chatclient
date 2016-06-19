@@ -1,5 +1,6 @@
 package de.htw.chatclient.views
 
+import de.htw.chatclient.service.LoginService
 import de.htw.chatclient.service.RegisterService
 import javafx.application.Application
 import javafx.event.ActionEvent
@@ -9,7 +10,7 @@ import static groovyx.javafx.GroovyFX.start
 import javafx.stage.Stage
 
 /**
- * Created by laura on 06.06.16.
+ * @autor laura on 06.06.16.
  */
 class LoginView {
 
@@ -68,7 +69,19 @@ class LoginView {
                                     passwordField(id: "passwordField", promptText: "Passwort eingeben", row: 2, column: 1)
 
 
-                                    button(id: "loginButton", "Einloggen", row: 3, columnSpan: 2, halignment: "center", style: "-fx-base: #29CCE9")
+                                    button(id: "loginButton", "Einloggen", row: 3, columnSpan: 2, halignment: "center", style: "-fx-base: #29CCE9") {
+                                        onMouseClicked { e ->
+                                            println("Click on LoginButton")
+                                            LoginService loginService = new LoginService()
+                                            def loginSuccessful = loginService.login("dummyMail", "123")
+                                            // TODO
+                                            if (loginSuccessful) {
+                                                // wenn nicht erfolgreich --> Fehler anzeigen
+                                            } else {
+                                                // wenn erfolgreich --> view wechseln
+                                            }
+                                        }
+                                    }
                                     loginButton.setMinWidth(280)
                                 }
 

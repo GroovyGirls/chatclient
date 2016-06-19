@@ -4,12 +4,7 @@ import de.htw.chatclient.service.LoginService
 import de.htw.chatclient.service.RegisterService
 import de.htw.chatclient.views.LoginView
 import de.htw.chatclient.views.RegisterView
-import de.htw.chatclient.views.Test
-import groovyx.net.http.HttpResponseException
-import javafx.application.Application
-import javafx.stage.Stage
 
-import javax.ws.rs.core.Response
 
 /**
 * @author vera on 31.05.16.
@@ -21,10 +16,10 @@ class Main {
         //Application.launch(Test.class);
         //Application.launch(LoginView.class);
 
-        LoginView l = new LoginView()
-        l.show();//start(primaryStage)
-        //RegisterView r = new RegisterView()
-        //r.show();//start(primaryStage)
+        //LoginView l = new LoginView()
+        //l.show();//start(primaryStage)
+        RegisterView r = new RegisterView()
+        r.show();//start(primaryStage)
         //new Test().start(new Stage())
 
         // Beispielhafter Aufruf für Regestrierung eines Users

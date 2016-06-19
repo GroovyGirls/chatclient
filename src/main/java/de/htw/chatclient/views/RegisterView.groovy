@@ -5,14 +5,15 @@ import groovyx.javafx.SceneGraphBuilder
 import javafx.application.Application
 import javafx.event.ActionEvent
 import javafx.event.EventHandler
+import javafx.scene.control.TextField
 import javafx.scene.layout.GridPane
-import sun.tools.jstat.Alignment
+//import sun.tools.jstat.Alignment
 
 import static groovyx.javafx.GroovyFX.start
 import javafx.stage.Stage
 
 /**
- * Created by laura on 06.06.16.
+ * @author laura on 06.06.16.
  */
 class RegisterView {
 
@@ -51,6 +52,7 @@ class RegisterView {
                                     label("Benutzername", row: 1, column: 0)
                                     textField(id: "usernameTextField", promptText: "z.B. anna123", row: 1, column: 1 )
 
+
                                     label("E-Mail", row: 2, column: 0)
                                     textField(id: "emailTextField", promptText: "z.B. user@123.de", row: 2, column: 1)
 
@@ -60,7 +62,22 @@ class RegisterView {
                                     label("Passwort wiederholen", row: 4, column: 0)
                                     passwordField(promptText: "Passwort wiederholen", row: 4, column: 1)
 
-                                    button(id: "registrationButton", "Registrier dich jetzt", row: 5, column: 0, columnSpan: 2, style: "-fx-base: #29CCE9;")
+                                    button(id: "registrationButton", "Registrier dich jetzt", row: 5, column: 0, columnSpan: 2, style: "-fx-base: #29CCE9;") {
+                                        onMouseClicked {e ->
+                                            RegisterService registerService = new RegisterService();
+                                            String name = usernameTextField.getText()
+                                            String mail = emailTextField.getText()
+                                            String password = passwordField.getText()
+                                            // TODO prüfen, ob Passwort = Wiederholung
+
+                                            def registerSuccessfull = registerService.register(name, mail, password)
+                                            if (registerSuccessfull) {
+                                                // TODO bestättigen
+                                            } else {
+                                                // TODO Fehlermeldung fü Benutzer
+                                            }
+                                        }
+                                    }
                                     registrationButton.setMinWidth(310)
 
 //                                    //******** EventHandler Reg_Button START *********
