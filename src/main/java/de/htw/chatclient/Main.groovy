@@ -1,6 +1,7 @@
 package de.htw.chatclient
 
 import de.htw.chatclient.service.LoginService
+import de.htw.chatclient.service.LogoutService
 import de.htw.chatclient.service.RegisterService
 
 /**
@@ -28,7 +29,8 @@ class Main {
         println("ende Login mit ${login}")
 
         println("start logout")
-        loginService.logout()
+        LogoutService logoutService = new LogoutService();
+        logoutService.logout()
         println("logout ende")
     }
 
