@@ -41,22 +41,6 @@ class LoginService {
         result
     }
 
-    def logout(){
-        def http = new HTTPBuilder(URL)
-        boolean result = false
 
-        try {
-            http.post(path: '/logout',  requestContentType: MediaType.APPLICATION_JSON){
-                resp ->
-                    def statusCode = resp.responseBase.statusline.statusCode
-                    if(statusCode == 200) {
-                    result = true
-                }
-            }
-        } catch (HttpResponseException e) {
-            println(e)
-        }
-        result
-    }
     }
 
