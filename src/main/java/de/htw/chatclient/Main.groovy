@@ -2,48 +2,30 @@ package de.htw.chatclient
 
 import de.htw.chatclient.service.LoginService
 import de.htw.chatclient.service.RegisterService
-import groovyx.net.http.HttpResponseException
-
-import javax.ws.rs.core.Response
 
 /**
- * Created by vera on 31.05.16.
- */
+* @author vera on 31.05.16.
+*/
 class Main {
 
     static void main(String[] args) {
         println('Application started')
 
 // Beispielhafter Aufruf für Regestrierung eines Users
-// 200 OK --> User wurde regestriert
-// 409 CONFLICT --> mit der Mail gibt es bereits einen User
-//        RegisterService registerController = new RegisterService();
-//        try {
-//
-//            def register = registerController.register('Anna', 'blabla@mail.de', '123') // 200 Ok wenn User regestriert
-//        } catch (e) {
-//            if (e instanceof HttpResponseException) {
-//                e.statusCode == Response.Status.CONFLICT.statusCode // Conflict wenn email bereits regestriert
-//                println("status code: " + e.statusCode)
-//            }
-//            println("error: " + e)
-//        }
-//
-//    }
-//
-//}
-        LoginService loginController = new LoginService();
-        try {
+// true --> User wurde regestriert
+// false --> mit der Mail gibt es bereits einen User
+        RegisterService registerController = new RegisterService();
+        boolean register = registerController.register('Anna', 'mail422@mail.de', '123')
 
-            def login = loginController.login('blabla@mail.de', '123') // 200 Ok wenn User angemeldet und passwort stimmt
-        } catch (e) {
-            if (e instanceof HttpResponseException) {
-                e.statusCode == Response.Status.CONFLICT.statusCode // Conflict wenn email bereits regestriert
-                println("status code: " + e.statusCode)
-            }
-            println("error: " + e)
-        }
+        println(register)
 
+        println("start Login")
+        // Beispielaufruf für Login
+        // true --> user ist nun eingeloggt
+        // false --> einloggen hat nicht funktioniert
+        LoginService loginService = new LoginService();
+        boolean login = loginService.login('mail@mail.de', '123')
+        println("ende Login mit ${login}")
     }
 
 }
