@@ -71,6 +71,7 @@ class LoginView {
 
                                     button(id: "loginButton", "Einloggen", row: 3, columnSpan: 2, halignment: "center", style: "-fx-base: #29CCE9") {
                                         onMouseClicked { e ->
+
                                             println("Click on LoginButton")
                                             LoginService loginService = new LoginService()
                                             def mail = emailTextField.getText()
@@ -79,12 +80,14 @@ class LoginView {
                                             def loginSuccessful = loginService.login(mail, password)
                                             // TODO
                                             if (loginSuccessful) {
+
                                                 RegisterView registerview = new RegisterView()
                                                 registerview.open()
                                                 // wenn erfolgreich --> view wechseln
-                                            } else {
-                                                // wenn nicht erfolgreich --> Fehler anzeigen
 
+                                            } else {
+                                                // wenn nicht erfolgreich --> Fehler anzeigen (Popup)
+                                                new RegisterView().show()
                                             }
                                         }
                                     }

@@ -16,10 +16,10 @@ class Main {
         //Application.launch(Test.class);
         //Application.launch(LoginView.class);
 
-        //LoginView l = new LoginView()
-        //l.show();//start(primaryStage)
-        RegisterView r = new RegisterView()
-        r.show();//start(primaryStage)
+        LoginView l = new LoginView()
+        l.show();//start(primaryStage)
+        //RegisterView r = new RegisterView()
+        //r.show();//start(primaryStage)
         //new Test().start(new Stage())
 
         // Beispielhafter Aufruf für Regestrierung eines Users

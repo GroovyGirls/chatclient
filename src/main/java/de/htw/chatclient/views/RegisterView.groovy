@@ -20,7 +20,7 @@ class RegisterView {
     void show() throws Exception {
         // super.start(primaryStage)
 
-        start {
+        new SceneGraphBuilder().build {
             Stage stage = stage(title: "ConnectMe", visible: true) {
                 scene(width: 1000, height: 775) {
 
@@ -52,7 +52,6 @@ class RegisterView {
                                     label("Benutzername", row: 1, column: 0)
                                     textField(id: "usernameTextField", promptText: "z.B. anna123", row: 1, column: 1 )
 
-
                                     label("E-Mail", row: 2, column: 0)
                                     textField(id: "emailTextField", promptText: "z.B. user@123.de", row: 2, column: 1)
 
@@ -68,18 +67,20 @@ class RegisterView {
                                             String name = usernameTextField.getText()
                                             String mail = emailTextField.getText()
                                             String password = passwordField.getText()
-                                            // TODO prüfen, ob Passwort = Wiederholung und sind alle Felder gesetzt
+                                            // TODO prüfen, ob Passwort = Wiederholung und ob alle Felder gesetzt
 
                                             def registerSuccessfull = registerService.register(name, mail, password)
 
                                             if (registerSuccessfull) {
                                                 // TODO bestätigen
+                                                new LoginView().show()
                                             } else {
                                                 // TODO Fehlermeldung für Benutzer
+
                                             }
 
-                                            LoginView loginView = new LoginView()
-                                            loginView.start()
+                                            /*LoginView loginView = new LoginView()
+                                            loginView.start()*/
                                             //println("hallo")
                                         }
                                     }
