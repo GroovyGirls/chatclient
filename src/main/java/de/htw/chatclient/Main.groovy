@@ -1,5 +1,6 @@
 package de.htw.chatclient
 
+import de.htw.chatclient.service.LoginService
 import de.htw.chatclient.service.RegisterService
 import groovyx.net.http.HttpResponseException
 
@@ -16,10 +17,25 @@ class Main {
 // Beispielhafter Aufruf für Regestrierung eines Users
 // 200 OK --> User wurde regestriert
 // 409 CONFLICT --> mit der Mail gibt es bereits einen User
-        RegisterService registerController = new RegisterService();
+//        RegisterService registerController = new RegisterService();
+//        try {
+//
+//            def register = registerController.register('Anna', 'blabla@mail.de', '123') // 200 Ok wenn User regestriert
+//        } catch (e) {
+//            if (e instanceof HttpResponseException) {
+//                e.statusCode == Response.Status.CONFLICT.statusCode // Conflict wenn email bereits regestriert
+//                println("status code: " + e.statusCode)
+//            }
+//            println("error: " + e)
+//        }
+//
+//    }
+//
+//}
+        LoginService loginController = new LoginService();
         try {
 
-            def register = registerController.register('Anna', 'mail2@mail.de', '123') // 200 Ok wenn User regestriert
+            def login = loginController.login('blabla@mail.de', '123') // 200 Ok wenn User angemeldet und passwort stimmt
         } catch (e) {
             if (e instanceof HttpResponseException) {
                 e.statusCode == Response.Status.CONFLICT.statusCode // Conflict wenn email bereits regestriert
