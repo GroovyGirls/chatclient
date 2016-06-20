@@ -48,7 +48,8 @@ class LoginService {
         try {
             http.post(path: '/logout',  requestContentType: MediaType.APPLICATION_JSON){
                 resp ->
-                if(resp.statusline.statusCode == 200) {
+                    def statusCode = resp.responseBase.statusline.statusCode
+                    if(statusCode == 200) {
                     result = true
                 }
             }
