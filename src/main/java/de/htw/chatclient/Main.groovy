@@ -24,8 +24,12 @@ class Main {
         // true --> user ist nun eingeloggt
         // false --> einloggen hat nicht funktioniert
         LoginService loginService = new LoginService();
-        boolean login = loginService.login('mail@mail.de', '123')
+        boolean login = loginService.login('mail422@mail.de', '123')
         println("ende Login mit ${login}")
+
+        println("start logout")
+        loginService.logout()
+        println("logout ende")
     }
 
 }
