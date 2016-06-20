@@ -68,14 +68,19 @@ class RegisterView {
                                             String name = usernameTextField.getText()
                                             String mail = emailTextField.getText()
                                             String password = passwordField.getText()
-                                            // TODO prüfen, ob Passwort = Wiederholung
+                                            // TODO prüfen, ob Passwort = Wiederholung und sind alle Felder gesetzt
 
                                             def registerSuccessfull = registerService.register(name, mail, password)
+
                                             if (registerSuccessfull) {
-                                                // TODO bestättigen
+                                                // TODO bestätigen
                                             } else {
-                                                // TODO Fehlermeldung fü Benutzer
+                                                // TODO Fehlermeldung für Benutzer
                                             }
+
+                                            LoginView loginView = new LoginView()
+                                            loginView.start()
+                                            //println("hallo")
                                         }
                                     }
                                     registrationButton.setMinWidth(310)

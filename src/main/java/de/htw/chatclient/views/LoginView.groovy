@@ -73,12 +73,18 @@ class LoginView {
                                         onMouseClicked { e ->
                                             println("Click on LoginButton")
                                             LoginService loginService = new LoginService()
-                                            def loginSuccessful = loginService.login("dummyMail", "123")
+                                            def mail = emailTextField.getText()
+                                            def password = passwordField.getText()
+                                            // prüfen, ob Pflichtfelder ausgefüllt sind, wenn ja Aufruf, sonst Fehler (popup-Fehlermeldung)
+                                            def loginSuccessful = loginService.login(mail, password)
                                             // TODO
                                             if (loginSuccessful) {
-                                                // wenn nicht erfolgreich --> Fehler anzeigen
-                                            } else {
+                                                RegisterView registerview = new RegisterView()
+                                                registerview.open()
                                                 // wenn erfolgreich --> view wechseln
+                                            } else {
+                                                // wenn nicht erfolgreich --> Fehler anzeigen
+
                                             }
                                         }
                                     }
