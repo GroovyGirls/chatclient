@@ -1,6 +1,7 @@
 package de.htw.chatclient
 
 import de.htw.chatclient.service.LoginService
+import de.htw.chatclient.service.LogoutService
 import de.htw.chatclient.service.RegisterService
 import de.htw.chatclient.views.MainView
 
@@ -33,8 +34,13 @@ class Main {
         // true --> user ist nun eingeloggt
         // false --> einloggen hat nicht funktioniert
         LoginService loginService = new LoginService();
-        boolean login = loginService.login('mail@mail.de', '123')
+        boolean login = loginService.login('mail422@mail.de', '123')
         println("ende Login mit ${login}")
+
+        println("start logout")
+        LogoutService logoutService = new LogoutService();
+        logoutService.logout()
+        println("logout ende")
     }
 
 

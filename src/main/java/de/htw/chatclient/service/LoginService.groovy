@@ -10,6 +10,8 @@ import javax.ws.rs.core.MediaType
  */
 class LoginService {
 
+    private def URL = 'http://localhost:8081'
+
     /**
      *
      * @param mail
@@ -18,7 +20,7 @@ class LoginService {
      */
     def login(String mail, String password){
 
-        def http = new HTTPBuilder('http://localhost:8081')
+        def http = new HTTPBuilder(URL)
         def postBody = [mail: mail, password: password] // will be url-encoded
 
         boolean result = false
@@ -38,5 +40,7 @@ class LoginService {
         }
         result
     }
+
+
     }
 
