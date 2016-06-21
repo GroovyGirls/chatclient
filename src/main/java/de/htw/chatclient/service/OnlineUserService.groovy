@@ -11,6 +11,10 @@ import javax.ws.rs.core.MediaType
  */
 class OnlineUserService {
 
+    /**
+     *
+     * @return HashMap mit OnlineUsern
+     */
     def getOnlineUser() {
 
         def http = new HTTPBuilder(Util.URL)
