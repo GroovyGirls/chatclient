@@ -2,6 +2,7 @@ package de.htw.chatclient
 
 import de.htw.chatclient.service.LoginService
 import de.htw.chatclient.service.LogoutService
+import de.htw.chatclient.service.OnlineUserService
 import de.htw.chatclient.service.RegisterService
 import de.htw.chatclient.views.MainView
 
@@ -36,6 +37,16 @@ class Main {
         LoginService loginService = new LoginService();
         boolean login = loginService.login('mail422@mail.de', '123')
         println("ende Login mit ${login}")
+
+
+
+
+        println("start onlineUser")
+        OnlineUserService onlineUserService = new OnlineUserService()
+        def onlineUser = onlineUserService.getOnlineUser()
+        println(onlineUser)
+        println("ende onlineUser")
+
 
         println("start logout")
         LogoutService logoutService = new LogoutService();

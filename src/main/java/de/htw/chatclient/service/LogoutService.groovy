@@ -10,14 +10,14 @@ import javax.ws.rs.core.MediaType
  */
 class LogoutService {
 
-    private def URL = 'http://localhost:8081'
+
 
     /**
      *
      * @return true, wenn user erfolgreich ausgelogt, ansonsten false
      */
     def logout(){
-        def http = new HTTPBuilder(URL)
+        def http = new HTTPBuilder(Util.URL)
         boolean result = false
 
         try {
