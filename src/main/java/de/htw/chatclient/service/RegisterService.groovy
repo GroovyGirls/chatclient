@@ -18,7 +18,7 @@ class RegisterService {
      * @return true wenn der User erfolgreich regestriert wurde und false falls die Regestrierung nicht erfolgreich war.
      */
     def register(String name, String mail, String password) {
-        def http = new HTTPBuilder('http://localhost:8081')
+        def http = new HTTPBuilder(Util.URL)
         def postBody = [name: name, mail: mail, password: password] // will be url-encoded
 
         boolean result = false
