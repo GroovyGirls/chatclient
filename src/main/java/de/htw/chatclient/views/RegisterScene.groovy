@@ -3,29 +3,28 @@ package de.htw.chatclient.views
 import de.htw.chatclient.service.RegisterService
 import groovyx.javafx.SceneGraphBuilder
 
-//import sun.tools.jstat.Alignment
-import javafx.stage.Stage
-
 /**
- * @author laura on 06.06.16.
+ * @author vera on 21.06.16.
  */
-class RegisterView {
+class RegisterScene {
 
-    // TODO kann die weg???
-
-    void show() throws Exception {
-        // super.start(primaryStage)
-
-        new SceneGraphBuilder().build {
-            Stage stage = stage(title: "ConnectMe", visible: true) {
-                scene(width: 1000, height: 775) {
+    public static Object registerScene(SceneGraphBuilder sceneGraphBuilder) {
+        sceneGraphBuilder.build {
+          //  stage(title: "ConnectMe Login", visible: true) {
+                scene(id: "registerScene", width: 1000, height: 775) {
 
                     borderPane() {
 
                         top() {
                             hbox(padding: 25, style: "-fx-background-color: #C8F6FF") {
-                                hyperlink(text: "Einloggen")
-                                hyperlink(text: "Registrieren")
+                                hyperlink(text: "Einloggen") {
+                                    onMouseClicked { e ->
+                                        println("Einlogen")
+                                        // TODO hier fliegt Exception
+                                        sceneGraphBuilder.primaryStage.setScene(LoginScene.loginSCene(sceneGraphBuilder))
+                                    }
+                                }
+                                //hyperlink(text: "Registrieren")
                             }
                         }
                         right(align: "center") {
@@ -46,7 +45,7 @@ class RegisterView {
                                             margin: [0, 0, 10]) {}
 
                                     label("Benutzername", row: 1, column: 0)
-                                    textField(id: "usernameTextField", promptText: "z.B. anna123", row: 1, column: 1 )
+                                    textField(id: "usernameTextField", promptText: "z.B. anna123", row: 1, column: 1)
 
                                     label("E-Mail", row: 2, column: 0)
                                     textField(id: "emailTextField", promptText: "z.B. user@123.de", row: 2, column: 1)
@@ -58,7 +57,7 @@ class RegisterView {
                                     passwordField(promptText: "Passwort wiederholen", row: 4, column: 1)
 
                                     button(id: "registrationButton", "Registrier dich jetzt", row: 5, column: 0, columnSpan: 2, style: "-fx-base: #29CCE9;") {
-                                        onMouseClicked {e ->
+                                        onMouseClicked { e ->
                                             RegisterService registerService = new RegisterService();
                                             String name = usernameTextField.getText()
                                             String mail = emailTextField.getText()
@@ -75,34 +74,9 @@ class RegisterView {
 
                                             }
 
-                                            /*MainView loginView = new MainView()
-                                            loginView.start()*/
-                                            //println("hallo")
                                         }
                                     }
                                     registrationButton.setMinWidth(310)
-
-//                                    //******** EventHandler Reg_Button START *********
-//                                    registrationButton.setOnAction(new EventHandler<ActionEvent>() {
-//                                        //@Override
-//                                        public void handle(ActionEvent event) {
-//                                            String name = GridPane.this.usernameTextField.getText()
-//                                            String email = emailTextField.getText()
-//                                            String passwort = passwordField.getText()
-//
-//                                            RegisterService regService = new RegisterService()
-//                                            //TODO prüfe ob Mail, Name, PW vorhanden
-//                                            boolean isSuccessful = (Boolean)regService.register(name, email, passwort)
-//                                            if (isSuccessful){
-//                                                registrationButton.setText("success")
-//                                            }
-//                                            else {
-//                                                registrationButton.setText("fail")
-//                                            }
-//                                        }
-//                                    })
-//                                    //******** EventHandler Reg_Button ENDE *********
-
 
                                 }
 
@@ -111,12 +85,8 @@ class RegisterView {
 
                     }
                 }
+
             }
-
-            //stage.scene.borderPane.center.hbox.gridPane.registrationButton;
         }
-
-
     }
-}
 

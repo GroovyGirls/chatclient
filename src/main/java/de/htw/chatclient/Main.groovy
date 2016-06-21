@@ -2,9 +2,7 @@ package de.htw.chatclient
 
 import de.htw.chatclient.service.LoginService
 import de.htw.chatclient.service.RegisterService
-import de.htw.chatclient.views.LoginView
-import de.htw.chatclient.views.RegisterView
-
+import de.htw.chatclient.views.MainView
 
 /**
 * @author vera on 31.05.16.
@@ -14,9 +12,9 @@ class Main {
     public static void main(String[] args) {
         println('Application started')
         //Application.launch(Test.class);
-        //Application.launch(LoginView.class);
+        //Application.launch(MainView.class);
 
-        LoginView l = new LoginView()
+        MainView l = new MainView()
         l.show();//start(primaryStage)
         //RegisterView r = new RegisterView()
         //r.show();//start(primaryStage)
