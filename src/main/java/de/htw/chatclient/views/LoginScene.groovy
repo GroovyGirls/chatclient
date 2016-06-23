@@ -8,28 +8,16 @@ import groovyx.javafx.SceneGraphBuilder
  */
 class LoginScene {
 
-    public static Object loginSCene(SceneGraphBuilder sceneGraphBuilder) {
+    public static Object loginScene(SceneGraphBuilder sceneGraphBuilder) {
         sceneGraphBuilder.build {
-            stage(title: "ConnectMe Login", visible: true) {
-                scene(id: "loginScene", width: 1000, height: 775) {
 
-                    borderPane() {
+                    borderPane(id: "pane", width: 1000, height: 775) {
 
                         top() {
                             hbox(padding: 25, style: "-fx-background-color: #C8F6FF") {
-                                /*                             imageView(imageURL)
-                                    {
-                                        setWidth: 100
-                                    }
-                            *//* {
-                         height: 50
-                         width: 100
-                     }*/
-                                // hyperlink(text: "Einloggen")
                                 hyperlink(text: "Registrieren") {
                                     onMouseClicked { e ->
-                                        println("Regestrieren")
-                                        sceneGraphBuilder.primaryStage.setScene(RegisterScene.registerScene(sceneGraphBuilder))
+                                        pane.getChildren().setAll(RegisterScene.registerScene(sceneGraphBuilder))
                                     }
                                 }
                             }
@@ -87,5 +75,3 @@ class LoginScene {
                 }
             }
         }
-    }
-}
