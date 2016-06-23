@@ -6,9 +6,9 @@ import groovyx.javafx.SceneGraphBuilder
 /**
  * @author vera on 21.06.16.
  */
-class LoginScene {
+class LoginView {
 
-    public static Object loginScene(SceneGraphBuilder sceneGraphBuilder) {
+    public static Object build(SceneGraphBuilder sceneGraphBuilder) {
         sceneGraphBuilder.build {
 
                     borderPane(id: "pane", width: 1000, height: 775) {
@@ -17,7 +17,7 @@ class LoginScene {
                             hbox(padding: 25, style: "-fx-background-color: #C8F6FF") {
                                 hyperlink(text: "Registrieren") {
                                     onMouseClicked { e ->
-                                        pane.getChildren().setAll(RegisterScene.registerScene(sceneGraphBuilder))
+                                        pane.getChildren().setAll(RegisterView.build(sceneGraphBuilder))
                                     }
                                 }
                             }

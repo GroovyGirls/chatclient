@@ -1,7 +1,6 @@
 package de.htw.chatclient.views
 
 import groovyx.javafx.SceneGraphBuilder
-import javafx.scene.Node
 
 import static groovyx.javafx.GroovyFX.start
 
@@ -30,14 +29,14 @@ class MainView {
 
                                 hyperlink(text: "Registrieren") {
                                     onMouseClicked { e ->
-                                        def node = RegisterScene.registerScene(sceneGraphBuilder)
+                                        def node = RegisterView.build(sceneGraphBuilder)
                                         println(node.getClass())
                                         pane.getChildren().setAll(node)
                                     }
                                 }
                                 hyperlink(text: "Login") {
                                     onMouseClicked { e ->
-                                        pane.getChildren().setAll(LoginScene.loginScene(sceneGraphBuilder))
+                                        pane.getChildren().setAll(LoginView.build(sceneGraphBuilder))
                                     }
                                 }
                             }
