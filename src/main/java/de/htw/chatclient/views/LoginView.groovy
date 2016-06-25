@@ -58,8 +58,8 @@ class LoginView {
                                             // TODO
                                             if (loginSuccessful) {
                                                 // wenn erfolgreich --> view wechseln
-                                                new RegisterView().show()
-
+                                                //new RegisterView().show()
+                                                pane.getChildren().setAll(MessengerView.build(sceneGraphBuilder))
                                             } else {
                                                 // wenn nicht erfolgreich --> Fehler anzeigen (Popup)
                                             }

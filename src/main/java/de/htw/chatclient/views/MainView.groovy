@@ -1,6 +1,7 @@
 package de.htw.chatclient.views
 
 import groovyx.javafx.SceneGraphBuilder
+import javafx.scene.image.Image
 
 import static groovyx.javafx.GroovyFX.start
 
@@ -13,6 +14,7 @@ class MainView {
         // super.start(primaryStage)
         start {
 
+            logo = "../images/logo.jpg"
             //imageURL = "http://www.nasa.gov/images/content/611907main_image_2134_800-600.jpg"
             //"C:/Users/Nadia/Documents/6Semester/ModScript/ConnectMeLogo.jpg"
             // "C://Users//Nadia//Documents//6Semester//ModScript//ConnectMeLogo.jpg"
@@ -38,6 +40,31 @@ class MainView {
                                     onMouseClicked { e ->
                                         pane.getChildren().setAll(LoginView.build(sceneGraphBuilder))
                                     }
+                                }
+                            }
+                        }
+
+
+                        right(align: "center") {
+                            hbox(padding: 25, style: "-fx-background-color: white") {}
+                        }
+                        left(align: "center") {
+                            hbox(padding: 25, style: "-fx-background-color: white") {}
+                        }
+                        bottom(align: "center") {
+                            hbox(padding: 25, style: "-fx-background-color: white") {}
+                        }
+
+                        center() {
+                            hbox(style: "-fx-background-color: white", alignment: "CENTER") {
+                                gridPane(hgap: 20, vgap: 12, padding: 25, alignment: "CENTER") {
+                                    //TODO Bild einfügen
+                                    //imageView(logo) {
+                                    //}
+                                    text(text: "ConnectMe ist ein Peer to Peer Messenger,\num mit deinen Freunden in Kontakt zu bleiben.\nRegistrier dich jetzt und werde Teil unserer Community.") {
+
+                                    }
+
                                 }
                             }
                         }

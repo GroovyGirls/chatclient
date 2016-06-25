@@ -47,7 +47,7 @@ class RegisterView {
                             passwordField(id: "passwordField", promptText: "Passwort eingeben", row: 3, column: 1)
 
                             label("Passwort wiederholen", row: 4, column: 0)
-                            passwordField(promptText: "Passwort wiederholen", row: 4, column: 1)
+                            passwordField(id: "passwordConfirmation", promptText: "Passwort wiederholen", row: 4, column: 1)
 
                             button(id: "registrationButton", "Registrier dich jetzt", row: 5, column: 0, columnSpan: 2, style: "-fx-base: #29CCE9;") {
                                 onMouseClicked { e ->
@@ -55,15 +55,18 @@ class RegisterView {
                                     String name = usernameTextField.getText()
                                     String mail = emailTextField.getText()
                                     String password = passwordField.getText()
+                                    String password_confirmation = passwordConfirmation.getText()
                                     // TODO prüfen, ob Passwort = Wiederholung und ob alle Felder gesetzt
-
+//                                    if (password == password_confirmation && !(name.isEmpty() || mail.isEmpty() || password.isEmpty() || password_confirmation.isEmpty()) ){
+//                                    }
                                     def registerSuccessfull = registerService.register(name, mail, password)
-
                                     if (registerSuccessfull) {
                                         // TODO bestätigen
-                                        new MainView().show()
+                                        //new MainView().show()
+                                        pane.getChildren().setAll(MessengerView.build(sceneGraphBuilder))
                                     } else {
                                         // TODO Fehlermeldung für Benutzer
+                                        text(text: "Registrierung nicht möglich") {}
 
                                     }
 

@@ -5,6 +5,7 @@ import de.htw.chatclient.service.LogoutService
 import de.htw.chatclient.service.OnlineUserService
 import de.htw.chatclient.service.RegisterService
 import de.htw.chatclient.views.MainView
+import de.htw.chatclient.views.MessengerView
 
 /**
 * @author vera on 31.05.16.
@@ -18,6 +19,8 @@ class Main {
 
         MainView l = new MainView()
         l.show();//start(primaryStage)
+        //MessengerView m = new MessengerView()
+        //m.show();
         //RegisterView r = new RegisterView()
         //r.show();//start(primaryStage)
         //new Test().start(new Stage())
