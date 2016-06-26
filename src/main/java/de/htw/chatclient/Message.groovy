@@ -4,7 +4,8 @@ package de.htw.chatclient
  * @author vera
  */
 class Message {
-    String userMail
+    String senderMail
+    String receiverMail
     String textMessage
     Date date
 }

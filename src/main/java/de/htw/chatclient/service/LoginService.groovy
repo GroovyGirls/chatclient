@@ -1,5 +1,6 @@
 package de.htw.chatclient.service
 
+import de.htw.chatclient.MessageStore
 import groovyx.net.http.HTTPBuilder
 import groovyx.net.http.HttpResponseException
 
@@ -10,14 +11,13 @@ import javax.ws.rs.core.MediaType
  */
 class LoginService {
 
-
     /**
      *
      * @param mail
      * @param password
-     * @return true, wenn user eingelogt, ansonsten false
+     * @return true , wenn user eingelogt, ansonsten false
      */
-    def login(String mail, String password){
+    def login(String mail, String password) {
 
         def http = new HTTPBuilder(Util.URL)
         def postBody = [mail: mail, password: password] // will be url-encoded
@@ -30,6 +30,7 @@ class LoginService {
 
                 // TODO anhand des statusCode booelan an Oberfläche übergeben
                 if (resp.statusLine.statusCode == 200) {
+                    MessageStore.getMessageStore().ownerMail = mail
                     result = true
                 }
             }
@@ -41,5 +42,5 @@ class LoginService {
     }
 
 
-    }
+}
 

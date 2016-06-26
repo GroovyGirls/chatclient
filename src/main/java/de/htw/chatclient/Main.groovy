@@ -1,21 +1,26 @@
 package de.htw.chatclient
 
+import de.htw.chatclient.controller.MessageController
 import de.htw.chatclient.service.LoginService
 import de.htw.chatclient.service.LogoutService
 import de.htw.chatclient.service.OnlineUserService
 import de.htw.chatclient.service.RegisterService
 import de.htw.chatclient.views.MainView
 import de.htw.chatclient.views.MessengerView
+import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory
+import org.glassfish.jersey.server.ResourceConfig
 
 /**
-* @author vera on 31.05.16.
-*/
+ * @author vera on 31.05.16.
+ */
 class Main {
 
     public static void main(String[] args) {
         println('Application started')
-        //Application.launch(Test.class);
-        //Application.launch(MainView.class);
+        GrizzlyHttpServerFactory.createHttpServer(
+                "http://localhost:8080".toURI(),
+                new ResourceConfig(MessageController.class));
+
 
         MainView l = new MainView()
         l.show();//start(primaryStage)
