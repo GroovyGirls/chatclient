@@ -7,5 +7,4 @@ class Message {
     String userMail
     String textMessage
     Date date
-
 }
