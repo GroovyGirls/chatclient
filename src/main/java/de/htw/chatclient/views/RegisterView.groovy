@@ -2,6 +2,7 @@ package de.htw.chatclient.views
 
 import de.htw.chatclient.service.RegisterService
 import groovyx.javafx.SceneGraphBuilder
+import javafx.scene.control.Alert
 
 /**
  * @author vera on 21.06.16.
@@ -56,20 +57,17 @@ class RegisterView {
                                     String mail = emailTextField.getText()
                                     String password = passwordField.getText()
                                     String password_confirmation = passwordConfirmation.getText()
-                                    // TODO prüfen, ob Passwort = Wiederholung und ob alle Felder gesetzt
-//                                    if (password == password_confirmation && !(name.isEmpty() || mail.isEmpty() || password.isEmpty() || password_confirmation.isEmpty()) ){
-//                                    }
-                                    def registerSuccessfull = registerService.register(name, mail, password)
-                                    if (registerSuccessfull) {
-                                        // TODO bestätigen
-                                        //new MainView().show()
-                                        pane.getChildren().setAll(MessengerView.build(sceneGraphBuilder))
+                                    if (password.equals(password_confirmation) && !(name.isEmpty() || mail.isEmpty() || password.isEmpty() || password_confirmation.isEmpty())) {
+                                        def registerSuccessfull = registerService.register(name, mail, password)
+                                        if (registerSuccessfull) {
+                                            showAlert(Alert.AlertType.CONFIRMATION, "Title", "Glückwunsch", "Erfolgreich regestriert. Jetzt einloggen")
+                                            pane.getChildren().setAll(LoginView.build(sceneGraphBuilder))
+                                        } else {
+                                            showAlert(Alert.AlertType.ERROR, "Fehlermeldung", "Registrieren nicht möglich", "Die Emailaddresse ist schon vergeben.")
+                                        }
                                     } else {
-                                        // TODO Fehlermeldung für Benutzer
-                                        text(text: "Registrierung nicht möglich") {}
-
+                                        showAlert(Alert.AlertType.ERROR, "Fehlermeldung", "Fehlende Pflichtfelder oder Passwortwiederholung", "Bitte alle Felder ausfüllen.")
                                     }
-
                                 }
                             }
                             registrationButton.setMinWidth(310)
@@ -82,5 +80,13 @@ class RegisterView {
             }
         }
 
+    }
+
+    private static void showAlert(Alert.AlertType alertType, String title, String header, String text) {
+        Alert alert = new Alert(alertType)
+        alert.setTitle(title);
+        alert.setHeaderText(header);
+        alert.setContentText(text);
+        alert.showAndWait();
     }
 }
