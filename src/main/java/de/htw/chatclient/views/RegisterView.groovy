@@ -68,6 +68,7 @@ class RegisterView {
                                     } else {
                                         showAlert(Alert.AlertType.ERROR, "Fehlermeldung", "Fehlende Pflichtfelder oder Passwortwiederholung", "Bitte alle Felder ausfüllen.")
                                     }
+
                                 }
                             }
                             registrationButton.setMinWidth(310)
