@@ -63,7 +63,7 @@ class RegisterView {
                                     if (registerSuccessfull) {
                                         // TODO bestätigen
                                         //new MainView().show()
-                                        pane.getChildren().setAll(MessengerView.build(sceneGraphBuilder))
+                                        pane.getChildren().setAll(LoginView.build(sceneGraphBuilder))
                                     } else {
                                         // TODO Fehlermeldung für Benutzer
                                         text(text: "Registrierung nicht möglich") {}

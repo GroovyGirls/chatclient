@@ -60,7 +60,7 @@ class MessengerView {
                             def message = Test.getMessage()
                             int i = 0
                             for (Message actual : message) {
-                                label(text: actual.senderMail, row: i, column: 0, style: "-fx-background-color: #C8F6FF")
+                                label(text: actual.senderMail, row: i, column: 0, style: "-fx-text-fill: red")
                                 i++
                                 label(text: actual.textMessage, row: i, column: 0)
                                 i++
