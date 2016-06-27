@@ -3,6 +3,7 @@ package de.htw.chatclient.views
 import de.htw.chatclient.Message
 import de.htw.chatclient.Test
 import de.htw.chatclient.service.LoginService
+import de.htw.chatclient.service.MessageService
 import de.htw.chatclient.service.OnlineUserService
 import groovyx.javafx.SceneGraphBuilder
 
@@ -14,11 +15,10 @@ import static groovyx.javafx.GroovyFX.start
 class MessengerView {
 
 
-//    void show() throws Exception {
-//        // super.start(primaryStage)
-//        start {
 
     public static Object build(SceneGraphBuilder sceneGraphBuilder) {
+      //  MessageService messageService = new MessageService()
+      //  String conversationPartner // TODO wo setzen?
         sceneGraphBuilder.build {
 
             borderPane(id: "pane", width: 1000, height: 775) {

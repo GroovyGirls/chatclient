@@ -17,9 +17,7 @@ class Main {
 
     public static void main(String[] args) {
         println('Application started')
-        GrizzlyHttpServerFactory.createHttpServer(
-                "http://localhost:8080".toURI(),
-                new ResourceConfig(MessageController.class));
+        //GrizzlyHttpServerFactory.createHttpServer("http://localhost:8080".toURI(), new ResourceConfig(MessageController.class))
 
 
         MainView l = new MainView()

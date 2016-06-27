@@ -35,7 +35,7 @@ class MessageStore {
         messages[key].add(message)
     }
 
-    def getConversation = { String mail ->
+    def getConversation(String mail) {
         return messages[mail]
     }
 
