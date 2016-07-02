@@ -9,7 +9,7 @@ class MessageStore {
 
     static final MessageStore messageStore = new MessageStore()
     String ownerMail
-    HashMap<String, List<Message>> messages
+    static HashMap<String, List<Message>> messages = new HashMap<>()
 
     private MessageStore() {
     }
@@ -36,6 +36,9 @@ class MessageStore {
     }
 
     def getConversation(String mail) {
+        if (!messages.containsKey(mail)) {
+            messages[mail] = new LinkedList<>()
+        }
         return messages[mail]
     }
 

@@ -15,9 +15,9 @@ import static groovyx.javafx.GroovyFX.start
 class MessengerView {
 
 
-
     public static Object build(SceneGraphBuilder sceneGraphBuilder) {
       //  MessageService messageService = new MessageService()
+        MessageService messageService = new MessageService()
       //  String conversationPartner // TODO wo setzen?
         sceneGraphBuilder.build {
 
@@ -57,9 +57,10 @@ class MessengerView {
                 center() {
                     hbox(style: "-fx-background-color: white", alignment: "CENTER") {
                         gridPane(hgap: 20, vgap: 12, padding: 25, alignment: "CENTER") {
-                            def message = Test.getMessage()
+                            String dummyMail = "1"
+                            def conversation = messageService.getConnversation(dummyMail)
                             int i = 0
-                            for (Message actual : message) {
+                            for (Message actual : conversation) {
                                 label(text: actual.senderMail, row: i, column: 0, style: "-fx-text-fill: red")
                                 i++
                                 label(text: actual.textMessage, row: i, column: 0)
@@ -70,7 +71,7 @@ class MessengerView {
                             button(text: "senden", row: i, column: 1){
                                 onMouseClicked{  e ->
                                     // TODO Mail nicht hardcoden
-                                    Test.getMessage().add(new Message(senderMail: "1", textMessage: messagetextfield.getText()))
+                                    messageService.send(new Message(senderMail: dummyMail, textMessage: messagetextfield.getText()))
                                     pane.getChildren().setAll(MessengerView.build(sceneGraphBuilder))
 
                                 }

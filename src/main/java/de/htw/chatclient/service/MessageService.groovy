@@ -20,11 +20,13 @@ class MessageService {
      */
     void send(Message message) {
         String mail = message.senderMail
+
         OnlineUserService onlineUserService = new OnlineUserService()
+
         Map<String, String> onlineUser = onlineUserService.getOnlineUser()
         String ipAdress = onlineUser.get(mail)
         def port = ":8080"
-        def http = new HTTPBuilder(ipAdress + port)
+        def http = new HTTPBuilder("http://$ipAdress$port")
 
         def postBody = [senderMail: message.senderMail, receiverMail: message.receiverMail, date: message.date, textMessage: message.textMessage]
         // will be url-encoded
@@ -36,6 +38,7 @@ class MessageService {
             println(e)
             // TODO Fehlerbehandlung
         }
+
         messageStore.addMessage(message)
     }
 
