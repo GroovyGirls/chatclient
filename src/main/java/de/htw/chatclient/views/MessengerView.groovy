@@ -1,8 +1,6 @@
 package de.htw.chatclient.views
 
 import de.htw.chatclient.Message
-import de.htw.chatclient.Test
-import de.htw.chatclient.service.LoginService
 import de.htw.chatclient.service.MessageService
 import de.htw.chatclient.service.OnlineUserService
 import groovyx.javafx.SceneGraphBuilder
@@ -44,8 +42,15 @@ class MessengerView {
                             def onlineuser = onlineUserService.getOnlineUser().keySet()
                             int i = 0
                             for (String mail : onlineuser) {
-                                hyperlink(id: mail, text: mail, row: i)
-                                i++
+                                hyperlink(id: mail, text: mail, row: i) {
+                                    onMouseClicked { e ->
+                                        println("Klick auf $mail")
+                                        Store.dialogPartnerMail = mail
+                                        println("dialogPartnerMail auf $Store.dialogPartnerMail gesetzt")
+                                        pane.getChildren().setAll(MessengerView.build(sceneGraphBuilder))
+                                    }
+                                    i++
+                                }
                             }
                         }
                     }
@@ -57,8 +62,8 @@ class MessengerView {
                 center() {
                     hbox(style: "-fx-background-color: white", alignment: "CENTER") {
                         gridPane(hgap: 20, vgap: 12, padding: 25, alignment: "CENTER") {
-                            String dummyMail = "partner"
-                            def conversation = messageService.getConnversation(dummyMail)
+
+                            def conversation = messageService.getConnversation(Store.dialogPartnerMail)
                             int i = 0
                             for (Message actual : conversation) {
                                 label(text: actual.senderMail, row: i, column: 0, style: "-fx-text-fill: red")
@@ -66,18 +71,21 @@ class MessengerView {
                                 label(text: actual.textMessage, row: i, column: 0)
                                 i++
                             }
-                            //label(text:"test", row: 0, columnSpan: 2)
-                            textField(id: "messagetextfield", text:"message", row: i, column:0)
-                            button(text: "senden", row: i, column: 1){
-                                onMouseClicked{  e ->
-                                    // TODO Mail nicht hardcoden
-                                    println("send Message")
-                                    messageService.send(new Message(senderMail: Mail.mail, receiverMail: dummyMail, textMessage: messagetextfield.getText()))
-                                    pane.getChildren().setAll(MessengerView.build(sceneGraphBuilder))
 
+                            if (Store.dialogPartnerMail.equals(null)){
+                                label(text: "Klicke einen Onlineuser an, um Chat zu starten")
+                            } else {
+                                textField(id: "messagetextfield", text: "message", row: i, column: 0)
+                                button(text: "senden", row: i, column: 1) {
+                                    onMouseClicked { e ->
+                                        // TODO Mail nicht hardcoden
+                                        println("send Message")
+                                        messageService.send(new Message(senderMail: Store.ownerMail, receiverMail: Store.dialogPartnerMail, textMessage: messagetextfield.getText()))
+                                        pane.getChildren().setAll(MessengerView.build(sceneGraphBuilder))
+
+                                    }
                                 }
                             }
-
 
                         }
 
