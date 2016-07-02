@@ -5,5 +5,5 @@ package de.htw.chatclient.service
  */
 class Util {
 
-    public final static String URL = 'http://localhost:8081'
+    public final static String URL = 'http://192.168.178.26:8081'
 }

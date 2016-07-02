@@ -1,10 +1,13 @@
 package de.htw.chatclient
 
+import de.htw.chatclient.controller.MessageController
 import de.htw.chatclient.service.LoginService
 import de.htw.chatclient.service.LogoutService
 import de.htw.chatclient.service.OnlineUserService
 import de.htw.chatclient.service.RegisterService
 import de.htw.chatclient.views.MainView
+import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory
+import org.glassfish.jersey.server.ResourceConfig
 
 
 /**
@@ -15,6 +18,11 @@ class Main {
     public static void main(String[] args) {
         println('Application started')
 
+        // TODO ifconfig ip con wlan0
+  //      String uri = "http://192.168.178.26:8080/"
+    //    GrizzlyHttpServerFactory.createHttpServer(
+      //          uri.toURI(),
+        //        new ResourceConfig(MessageController.class));
 
         MainView l = new MainView()
         l.show();//start(primaryStage)

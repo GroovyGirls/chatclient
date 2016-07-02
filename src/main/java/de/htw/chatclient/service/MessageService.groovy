@@ -31,6 +31,7 @@ class MessageService {
         def postBody = [senderMail: message.senderMail, receiverMail: message.receiverMail, date: message.date, textMessage: message.textMessage]
         // will be url-encoded
 
+        /* TODO grizzley Fehler beheben
         try {
             http.post(path: '/message', body: postBody,
                     requestContentType: MediaType.APPLICATION_JSON)
@@ -38,7 +39,7 @@ class MessageService {
             println(e)
             // TODO Fehlerbehandlung
         }
-
+       */
         messageStore.addMessage(message)
     }
 
