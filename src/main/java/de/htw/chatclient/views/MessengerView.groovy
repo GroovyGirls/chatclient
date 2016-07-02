@@ -39,6 +39,7 @@ class MessengerView {
                             def onlineuser = onlineUserService.getOnlineUser().keySet()
                             int i = 0
                             for (String mail : onlineuser) {
+                                if(!mail.equals(Store.ownerMail)){
                                 hyperlink(id: mail, text: mail, row: i) {
                                     onMouseClicked { e ->
                                         String hyperMail = e.source.text
@@ -48,6 +49,7 @@ class MessengerView {
                                         pane.getChildren().setAll(MessengerView.build(sceneGraphBuilder))
                                     }
                                     i++
+                                }
                                 }
                             }
                         }
