@@ -5,7 +5,6 @@ import de.htw.chatclient.service.MessageService
 import de.htw.chatclient.service.OnlineUserService
 import groovyx.javafx.SceneGraphBuilder
 
-import static groovyx.javafx.GroovyFX.start
 
 /**
  * Created by Sarah on 26.06.16.
@@ -14,9 +13,7 @@ class MessengerView {
 
 
     public static Object build(SceneGraphBuilder sceneGraphBuilder) {
-      //  MessageService messageService = new MessageService()
         MessageService messageService = new MessageService()
-      //  String conversationPartner // TODO wo setzen?
         sceneGraphBuilder.build {
 
             borderPane(id: "pane", width: 1000, height: 775) {
@@ -44,8 +41,9 @@ class MessengerView {
                             for (String mail : onlineuser) {
                                 hyperlink(id: mail, text: mail, row: i) {
                                     onMouseClicked { e ->
-                                        println("Klick auf $mail")
-                                        Store.dialogPartnerMail = mail
+                                        String hyperMail = e.source.text
+                                        println("Klick auf $hyperMail")
+                                        Store.dialogPartnerMail = hyperMail
                                         println("dialogPartnerMail auf $Store.dialogPartnerMail gesetzt")
                                         pane.getChildren().setAll(MessengerView.build(sceneGraphBuilder))
                                     }
