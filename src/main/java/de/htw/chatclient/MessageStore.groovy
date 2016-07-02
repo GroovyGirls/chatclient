@@ -25,8 +25,7 @@ class MessageStore {
 
         String key
         if (message.senderMail.equals(ownerMail)) {
-            // TODO key = message.receiverMail
-            key = message.senderMail
+            key = message.receiverMail
         } else {
             key = message.senderMail
         }

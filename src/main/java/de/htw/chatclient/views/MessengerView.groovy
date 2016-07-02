@@ -57,7 +57,7 @@ class MessengerView {
                 center() {
                     hbox(style: "-fx-background-color: white", alignment: "CENTER") {
                         gridPane(hgap: 20, vgap: 12, padding: 25, alignment: "CENTER") {
-                            String dummyMail = "1"
+                            String dummyMail = "partner"
                             def conversation = messageService.getConnversation(dummyMail)
                             int i = 0
                             for (Message actual : conversation) {
@@ -72,7 +72,7 @@ class MessengerView {
                                 onMouseClicked{  e ->
                                     // TODO Mail nicht hardcoden
                                     println("send Message")
-                                    messageService.send(new Message(senderMail: dummyMail, textMessage: messagetextfield.getText()))
+                                    messageService.send(new Message(senderMail: Mail.mail, receiverMail: dummyMail, textMessage: messagetextfield.getText()))
                                     pane.getChildren().setAll(MessengerView.build(sceneGraphBuilder))
 
                                 }

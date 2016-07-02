@@ -59,6 +59,7 @@ class LoginView {
                                     } else {
                                         def loginSuccessful = loginService.login(mail, password)
                                         if (loginSuccessful) {
+                                            Mail.mail = mail
                                             pane.getChildren().setAll(MessengerView.build(sceneGraphBuilder))
                                         } else {
                                             showAlert("Fehlermeldung", "Einloggen nicht möglich", "Passwort oder Mail ist falsch.")
