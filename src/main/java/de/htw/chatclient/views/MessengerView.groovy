@@ -76,7 +76,6 @@ class MessengerView {
                                 textField(id: "messagetextfield", text: "message", row: i, column: 0)
                                 button(text: "senden", row: i, column: 1) {
                                     onMouseClicked { e ->
-                                        // TODO Mail nicht hardcoden
                                         println("send Message")
                                         messageService.send(new Message(senderMail: Store.ownerMail, receiverMail: Store.dialogPartnerMail, textMessage: messagetextfield.getText()))
                                         pane.getChildren().setAll(MessengerView.build(sceneGraphBuilder))
