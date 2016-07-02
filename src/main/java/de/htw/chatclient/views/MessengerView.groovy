@@ -31,7 +31,7 @@ class MessengerView {
                     hbox(padding: 25, style: "-fx-background-color: white") {}
                 }
                 left(align: "center") {
-                    hbox(padding: 25, style: "-fx-background-color: grey") {
+                    hbox(padding: 25, style: "-fx-background-color: white; -fx-border-style: solid; -fx-border-width: 2; -fx-border-color: #29CCE9") {
                         gridPane(hgap: 20, vgap: 12, padding: 25) {
 
 
@@ -40,7 +40,11 @@ class MessengerView {
                             int i = 0
                             for (String mail : onlineuser) {
                                 if(!mail.equals(Store.ownerMail)){
-                                hyperlink(id: mail, text: mail, row: i) {
+                                    String color = "#29CCE9"
+                                    if(mail.equals(Store.dialogPartnerMail)) {
+                                        color = "#FF11DD"
+                                    }
+                                hyperlink(id: mail, text: mail, row: i, style: "-fx-text-fill: $color") {
                                     onMouseClicked { e ->
                                         String hyperMail = e.source.text
                                         println("Klick auf $hyperMail")
@@ -76,7 +80,7 @@ class MessengerView {
                                 label(text: "Klicke einen Onlineuser an, um Chat zu starten")
                             } else {
                                 textField(id: "messagetextfield", text: "message", row: i, column: 0)
-                                button(text: "senden", row: i, column: 1) {
+                                button(text: "senden", row: i, column: 1, style: "-fx-base: #29CCE9") {
                                     onMouseClicked { e ->
                                         println("send Message")
                                         messageService.send(new Message(senderMail: Store.ownerMail, receiverMail: Store.dialogPartnerMail, textMessage: messagetextfield.getText()))
