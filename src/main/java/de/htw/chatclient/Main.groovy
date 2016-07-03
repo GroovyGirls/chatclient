@@ -19,10 +19,10 @@ class Main {
         println('Application started')
 
         // TODO ifconfig ip con wlan0
-  //      String uri = "http://192.168.178.26:8080/"
-    //    GrizzlyHttpServerFactory.createHttpServer(
-      //          uri.toURI(),
-        //        new ResourceConfig(MessageController.class));
+        String uri = "http://192.168.178.21:8080/"
+        GrizzlyHttpServerFactory.createHttpServer(
+                uri.toURI());
+        // TODO Fehler ,new ResourceConfig(MessageController.class));
 
         MainView l = new MainView()
         l.show();//start(primaryStage)
