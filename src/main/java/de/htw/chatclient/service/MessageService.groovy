@@ -19,12 +19,12 @@ class MessageService {
      * @param message
      */
     void send(Message message) {
-        String mail = message.senderMail
+        String receiverMail = message.receiverMail
 
         OnlineUserService onlineUserService = new OnlineUserService()
 
         Map<String, String> onlineUser = onlineUserService.getOnlineUser()
-        String ipAdress = onlineUser.get(mail)
+        String ipAdress = onlineUser.get(receiverMail)
         def port = ":8080"
         def http = new HTTPBuilder("http://$ipAdress$port")
 
