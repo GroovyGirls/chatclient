@@ -6,4 +6,9 @@ package de.htw.chatclient.views
 class Store {
     static String ownerMail
     static String dialogPartnerMail
+
+    /**
+     * This class should not be instantiated
+     */
+    private Store(){}
 }
