@@ -67,21 +67,27 @@ class MessengerView {
                     hbox(style: "-fx-background-color: #FFCCDD", alignment: "CENTER") {
                         borderPane(style: "-fx-background-color: grey") {
 
+
                             if (Store.dialogPartnerMail.equals(null)){
                                 label(text: "Klicke einen Onlineuser an, um Chat zu starten")
                             }else {
 
                                 top() {
                                     hbox(style: "-fx-background-color: white; -fx-min-width: 500; -fx-max-width: 500; -fx-min-height: 500; -fx-max-height: 500;") {
+                                        gridPane(hgap: 20, vgap: 12, padding: 25, alignment: "CENTER") {
 
-                                        def conversation = messageService.getConnversation(Store.dialogPartnerMail)
-                                        int i = 0
-                                        for (Message actual : conversation) {
-                                            label(text: actual.senderMail, row: i, column: 0, style: "-fx-text-fill: red")
-                                            i++
-                                            label(text: actual.textMessage, row: i, column: 0)
-                                            //TODO Zeilenumbruch fehlt +"\n"
-                                            i++
+                                            def conversation = messageService.getConnversation(Store.dialogPartnerMail)
+                                            int i = 0
+                                            for (Message actual : conversation) {
+                                                if (i % 2 == 0) {
+                                                    label(text: actual.senderMail, row: i, column: 0, style: "-fx-text-fill: red")
+                                                }else{
+                                                    label(text: actual.senderMail, row: i, column: 0, style: "-fx-text-fill: green")
+                                                }
+                                                i++
+                                                label(text: actual.textMessage, row: i, column: 0)
+                                                i++
+                                            }
                                         }
                                     }
                                 }
@@ -90,13 +96,17 @@ class MessengerView {
 
                                 bottom() {
                                     hbox() {
-                                        textField(id: "messagetextfield", text: "message")
-                                        button(text: "senden", style: "-fx-base: #29CCE9") {
-                                            onMouseClicked { e ->
-                                                println("send Message")
-                                                messageService.send(new Message(senderMail: Store.ownerMail, receiverMail: Store.dialogPartnerMail, textMessage: messagetextfield.getText()))
-                                                pane.getChildren().setAll(MessengerView.build(sceneGraphBuilder))
+                                        gridPane(hgap: 20, vgap: 12, padding: 25, alignment: "CENTER") {
+                                            textArea(id: "messagetextfield", promptText: "message", column: 0)
+                                            messagetextfield.setPrefWidth(360)
+                                            messagetextfield.setPrefHeight(60)
+                                            button(text: "senden", style: "-fx-base: #29CCE9", column: 1) {
+                                                onMouseClicked { e ->
+                                                    println("send Message")
+                                                    messageService.send(new Message(senderMail: Store.ownerMail, receiverMail: Store.dialogPartnerMail, textMessage: messagetextfield.getText()))
+                                                    pane.getChildren().setAll(MessengerView.build(sceneGraphBuilder))
 
+                                                }
                                             }
                                         }
                                     }
