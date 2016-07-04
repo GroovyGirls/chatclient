@@ -14,8 +14,8 @@ class Main {
     public static void main(String[] args) {
         println('Application started')
 
-        // TODO ifconfig ip con wlan0
-        String uri = "http://192.168.178.21:8080/"
+        // TODO ifconfig eigene Ip eintragen
+        String uri = "http://141.45.201.83:8080/"
         GrizzlyHttpServerFactory.createHttpServer(
                 uri.toURI(),
                 new ResourceConfig(MessageController.class));

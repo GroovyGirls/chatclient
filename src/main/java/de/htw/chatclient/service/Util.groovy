@@ -5,5 +5,6 @@ package de.htw.chatclient.service
  */
 class Util {
 
-    public final static String URL = 'http://192.168.178.21:8081'
+    // TODO hier Serveradresse einstellen
+    public final static String URL = 'http://141.45.201.83:8081'
 }

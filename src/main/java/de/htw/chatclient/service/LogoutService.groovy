@@ -20,6 +20,8 @@ class LogoutService {
         def http = new HTTPBuilder(Util.URL)
         boolean result = false
 
+        // TODO es muss der MessageStore gelöscht werden
+
         try {
             http.post(path: '/logout',  requestContentType: MediaType.APPLICATION_JSON){
                 resp ->
