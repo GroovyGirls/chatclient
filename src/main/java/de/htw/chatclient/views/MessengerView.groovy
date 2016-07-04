@@ -18,7 +18,7 @@ class MessengerView {
         MessageService messageService = new MessageService()
         sceneGraphBuilder.build {
 
-            borderPane(id: "pane", width: 1000, height: 775) {
+            borderPane(id: "pane", width: 1000, height: 700) {
 
                 top() {
                     hbox(padding: 25, style: "-fx-background-color: #C8F6FF") {
@@ -81,7 +81,7 @@ class MessengerView {
                             }else {
 
                                 top() {
-                                    scrollPane(style: "-fx-background-color: white; -fx-min-width: 800; -fx-max-width: 800; -fx-min-height: 600; -fx-max-height: 600;") {
+                                    scrollPane(style: "-fx-background-color: white; -fx-min-width: 800; -fx-max-width: 800; -fx-min-height: 500; -fx-max-height: 500;") {
                                         gridPane(hgap: 20, vgap: 12, padding: 25, alignment: "CENTER") {
 
                                             def conversation = messageService.getConnversation(Store.dialogPartnerMail)
