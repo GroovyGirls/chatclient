@@ -39,7 +39,7 @@ class MessengerView {
                     hbox(padding: 25, style: "-fx-background-color: white") {}
                 }
                 left(align: "center") {
-                    hbox(padding: 25, style: "-fx-background-color: white; -fx-border-style: solid; -fx-border-width: 2; -fx-border-color: #29CCE9") {
+                    hbox(padding: 25, style: "-fx-background-color: white") {
                         gridPane(hgap: 20, vgap: 12, padding: 25) {
 
 
@@ -48,7 +48,7 @@ class MessengerView {
                             int i = 0
                             for (String mail : onlineuser) {
                                 if(!mail.equals(Store.ownerMail)){
-                                    String color = "#29CCE9"
+                                    String color = "grey"
                                     if(mail.equals(Store.dialogPartnerMail)) {
                                         color = "#FF11DD"
                                     }
@@ -72,7 +72,7 @@ class MessengerView {
                 }
 
                 center() {
-                    hbox(style: "-fx-background-color: #FFCCDD", alignment: "CENTER") {
+                    hbox(style: "-fx-background-color: white", alignment: "CENTER") {
                         borderPane(style: "-fx-background-color: grey") {
 
 
@@ -81,17 +81,19 @@ class MessengerView {
                             }else {
 
                                 top() {
-                                    hbox(style: "-fx-background-color: white; -fx-min-width: 500; -fx-max-width: 500; -fx-min-height: 500; -fx-max-height: 500;") {
+                                    scrollPane(style: "-fx-background-color: white; -fx-min-width: 800; -fx-max-width: 800; -fx-min-height: 600; -fx-max-height: 600;") {
                                         gridPane(hgap: 20, vgap: 12, padding: 25, alignment: "CENTER") {
 
                                             def conversation = messageService.getConnversation(Store.dialogPartnerMail)
                                             int i = 0
+
                                             for (Message actual : conversation) {
-                                                if (i % 2 == 0) {
-                                                    label(text: actual.senderMail, row: i, column: 0, style: "-fx-text-fill: red")
-                                                }else{
-                                                    label(text: actual.senderMail, row: i, column: 0, style: "-fx-text-fill: green")
+                                                String messageColor = "#29CCE9"
+
+                                                if(actual.senderMail.equals(Store.dialogPartnerMail)) {
+                                                    messageColor = "#FF11DD"
                                                 }
+                                                label(text: actual.senderMail, row: i, column: 0, style: "-fx-text-fill: $messageColor")
                                                 i++
                                                 label(text: actual.textMessage, row: i, column: 0)
                                                 i++
@@ -104,9 +106,9 @@ class MessengerView {
 
                                 bottom() {
                                     hbox() {
-                                        gridPane(hgap: 20, vgap: 12, padding: 25, alignment: "CENTER") {
-                                            textArea(id: "messagetextfield", promptText: "message", column: 0)
-                                            messagetextfield.setPrefWidth(360)
+                                        gridPane(hgap: 20, vgap: 12, padding: 30, alignment: "CENTER") {
+                                            textArea(id: "messagetextfield", promptText: "Nachricht...", column: 0)
+                                            messagetextfield.setPrefWidth(600)
                                             messagetextfield.setPrefHeight(60)
                                             button(text: "senden", style: "-fx-base: #29CCE9", column: 1) {
                                                 onMouseClicked { e ->
