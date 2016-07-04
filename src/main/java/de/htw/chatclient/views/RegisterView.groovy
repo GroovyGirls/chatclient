@@ -60,7 +60,7 @@ class RegisterView {
                                     if (password.equals(password_confirmation) && !(name.isEmpty() || mail.isEmpty() || password.isEmpty() || password_confirmation.isEmpty())) {
                                         def registerSuccessfull = registerService.register(name, mail, password)
                                         if (registerSuccessfull) {
-                                            showAlert(Alert.AlertType.CONFIRMATION, "Title", "Glückwunsch", "Erfolgreich regestriert. Jetzt einloggen")
+                                            showAlert(Alert.AlertType.CONFIRMATION, "Erfolg", "Glückwunsch", "Erfolgreich registriert. Jetzt einloggen")
                                             pane.getChildren().setAll(LoginView.build(sceneGraphBuilder))
                                         } else {
                                             showAlert(Alert.AlertType.ERROR, "Fehlermeldung", "Registrieren nicht möglich", "Die Emailaddresse ist schon vergeben.")
