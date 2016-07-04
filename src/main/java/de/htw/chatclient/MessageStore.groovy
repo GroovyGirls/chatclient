@@ -43,4 +43,10 @@ class MessageStore {
         return messages[mail]
     }
 
+    def clearMessageStore() {
+        for (String key:messages.keySet()) {
+            messages.remove(key)
+        }
+    }
+
 }

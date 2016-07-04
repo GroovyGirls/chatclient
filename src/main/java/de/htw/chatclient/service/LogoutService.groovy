@@ -1,5 +1,6 @@
 package de.htw.chatclient.service
 
+import de.htw.chatclient.views.Store
 import groovyx.net.http.HTTPBuilder
 import groovyx.net.http.HttpResponseException
 
@@ -27,6 +28,10 @@ class LogoutService {
                 resp ->
                     def statusCode = resp.responseBase.statusline.statusCode
                     if(statusCode == 200) {
+                        def messageService = new MessageService()
+                        messageService.clearMessages()
+                        Store.ownerMail=null
+                        Store.dialogPartnerMail=null
                         result = true
                     }
             }

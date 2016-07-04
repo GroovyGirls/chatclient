@@ -55,4 +55,9 @@ class MessageService {
     LinkedList<Message> getConnversation(String mail) {
         messageStore.getConversation(mail)
     }
+
+    void clearMessages() {
+        messageStore.clearMessageStore()
+    }
+
 }

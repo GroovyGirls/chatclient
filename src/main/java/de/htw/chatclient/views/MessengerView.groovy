@@ -1,9 +1,11 @@
 package de.htw.chatclient.views
 
 import de.htw.chatclient.Message
+import de.htw.chatclient.service.LogoutService
 import de.htw.chatclient.service.MessageService
 import de.htw.chatclient.service.OnlineUserService
 import groovyx.javafx.SceneGraphBuilder
+import javafx.scene.control.Alert
 
 
 /**
@@ -22,7 +24,13 @@ class MessengerView {
                     hbox(padding: 25, style: "-fx-background-color: #C8F6FF") {
                         hyperlink(text: "Ausloggen") {
                             onMouseClicked { e ->
-                                pane.getChildren().setAll(LoginView.build(sceneGraphBuilder))
+                                def logout = new LogoutService()
+                                if (logout.logout()){
+                                    pane.getChildren().setAll(LoginView.build(sceneGraphBuilder))
+                                }
+                                else {
+                                    showAlert(Alert.AlertType.ERROR, "Fehler", "Logoutfehler", "Huch, irgendwas hat nicht geklappt!")
+                                }
                             }
                         }
                     }
@@ -122,5 +130,12 @@ class MessengerView {
         }
     }
 
+    private static void showAlert(Alert.AlertType alertType, String title, String header, String text) {
+        Alert alert = new Alert(alertType)
+        alert.setTitle(title);
+        alert.setHeaderText(header);
+        alert.setContentText(text);
+        alert.showAndWait();
+    }
 
 }
