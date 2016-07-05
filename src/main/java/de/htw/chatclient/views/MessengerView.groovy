@@ -33,6 +33,11 @@ class MessengerView {
                                 }
                             }
                         }
+                        hyperlink(text: "Refresh") {
+                            onMouseClicked { e ->
+                                pane.getChildren().setAll(MessengerView.build(sceneGraphBuilder))
+                            }
+                        }
                     }
                 }
                 right(align: "center") {
