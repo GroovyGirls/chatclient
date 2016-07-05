@@ -6,6 +6,11 @@ import de.htw.chatclient.service.MessageService
 import de.htw.chatclient.service.OnlineUserService
 import groovyx.javafx.SceneGraphBuilder
 import javafx.scene.control.Alert
+import javafx.scene.control.DatePicker
+import javafx.scene.control.TextField
+
+import java.text.DateFormat
+import java.text.SimpleDateFormat
 
 
 /**
@@ -99,10 +104,24 @@ class MessengerView {
                                                     messageColor = "#FF11DD"
                                                 }
                                                 label(text: actual.senderMail, row: i, column: 0, style: "-fx-text-fill: $messageColor")
+
+                                                // Datums- und Uhrzeit-Label
+
+                                                label(id:"datum", text: actual.time, row: i, column: 1)
+
+                                                //DateFormat datePicker = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
+                                                //String time = "datum.getTimeString()"
+                                                //datum.getTimeString()
+
+
+
                                                 i++
+
                                                 label(text: actual.textMessage, row: i, column: 0)
                                                 i++
+
                                             }
+
                                         }
                                     }
                                 }
@@ -118,7 +137,11 @@ class MessengerView {
                                             button(text: "senden", style: "-fx-base: #29CCE9", column: 1) {
                                                 onMouseClicked { e ->
                                                     println("send Message")
-                                                    messageService.send(new Message(senderMail: Store.ownerMail, receiverMail: Store.dialogPartnerMail, textMessage: messagetextfield.getText()))
+
+                                                    SimpleDateFormat sdfDate = new SimpleDateFormat("dd.MM.yy HH:mm");//dd/MM/yyyy
+                                                    Date now = new Date();
+                                                    String time = sdfDate.format(now);
+                                                    messageService.send(new Message(senderMail: Store.ownerMail, receiverMail: Store.dialogPartnerMail, textMessage: messagetextfield.getText(), time: time))
                                                     pane.getChildren().setAll(MessengerView.build(sceneGraphBuilder))
 
                                                 }

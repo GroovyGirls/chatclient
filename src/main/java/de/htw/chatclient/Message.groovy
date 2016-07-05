@@ -7,5 +7,5 @@ class Message {
     String receiverMail
     String senderMail
     String textMessage
-    Date date
+    String time
 }

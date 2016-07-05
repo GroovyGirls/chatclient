@@ -28,7 +28,7 @@ class MessageService {
         def port = ":8080"
         def http = new HTTPBuilder("http://$ipAdress$port")
 
-        def postBody = [senderMail: message.senderMail, receiverMail: message.receiverMail, date: message.date, textMessage: message.textMessage]
+        def postBody = [senderMail: message.senderMail, receiverMail: message.receiverMail, time: message.time, textMessage: message.textMessage]
         // will be url-encoded
 
 
