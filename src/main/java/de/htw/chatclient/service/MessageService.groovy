@@ -29,15 +29,12 @@ class MessageService {
         def http = new HTTPBuilder("http://$ipAdress$port")
 
         def postBody = [senderMail: message.senderMail, receiverMail: message.receiverMail, time: message.time, textMessage: message.textMessage]
-        // will be url-encoded
-
 
         try {
             http.post(path: '/message', body: postBody,
                     requestContentType: MediaType.APPLICATION_JSON)
         } catch (HttpResponseException e) {
             println(e)
-            // TODO Fehlerbehandlung
         }
 
         messageStore.addMessage(message)

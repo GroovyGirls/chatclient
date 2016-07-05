@@ -1,7 +1,6 @@
 package de.htw.chatclient.views
 
 import groovyx.javafx.SceneGraphBuilder
-import javafx.scene.image.Image
 
 import static groovyx.javafx.GroovyFX.start
 
@@ -11,17 +10,9 @@ import static groovyx.javafx.GroovyFX.start
 class MainView {
 
     void show() throws Exception {
-        // super.start(primaryStage)
+
         start {
-
-            logo = "../images/logo.jpg"
-            //imageURL = "http://www.nasa.gov/images/content/611907main_image_2134_800-600.jpg"
-            //"C:/Users/Nadia/Documents/6Semester/ModScript/ConnectMeLogo.jpg"
-            // "C://Users//Nadia//Documents//6Semester//ModScript//ConnectMeLogo.jpg"
-            // "http://www.nasa.gov/images/content/611907main_image_2134_800-600.jpg"
-            //"C:\Users\Nadia\Documents\6Semester\ModScript\ConnectMeLogo.jpg"
             SceneGraphBuilder sceneGraphBuilder = new SceneGraphBuilder()
-
             stage(title: "ConnectMe Login", visible: true) {
                 scene(id: "scene", width: 1000, height: 775) {
                     borderPane(id: "pane") {

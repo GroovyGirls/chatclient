@@ -1,7 +1,5 @@
 package de.htw.chatclient
 
-import de.htw.chatclient.service.Util
-
 /**
  * Der Store ist ein Singleton und speichert für alle Gespräche die gesendeten und empfangenen Nachrichten.
  * @author vera
@@ -44,7 +42,7 @@ class MessageStore {
     }
 
     def clearMessageStore() {
-        for (String key:messages.keySet()) {
+        for (String key : messages.keySet()) {
             messages.remove(key)
         }
     }

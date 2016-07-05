@@ -27,8 +27,6 @@ class LoginService {
         try {
             http.post(path: '/login', body: postBody,
                     requestContentType: MediaType.APPLICATION_JSON) { resp ->
-
-                // TODO anhand des statusCode booelan an Oberfläche übergeben
                 if (resp.statusLine.statusCode == 200) {
                     MessageStore.getMessageStore().ownerMail = mail
                     result = true

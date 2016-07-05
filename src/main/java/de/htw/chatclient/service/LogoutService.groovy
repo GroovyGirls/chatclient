@@ -11,27 +11,22 @@ import javax.ws.rs.core.MediaType
  */
 class LogoutService {
 
-
-
     /**
      *
-     * @return true, wenn user erfolgreich ausgelogt, ansonsten false
+     * @return true , wenn user erfolgreich ausgelogt, ansonsten false
      */
-    def logout(){
+    def logout() {
         def http = new HTTPBuilder(Util.URL)
         boolean result = false
-
-        // TODO es muss der MessageStore gelöscht werden
-
         try {
-            http.post(path: '/logout',  requestContentType: MediaType.APPLICATION_JSON){
+            http.post(path: '/logout', requestContentType: MediaType.APPLICATION_JSON) {
                 resp ->
                     def statusCode = resp.responseBase.statusline.statusCode
-                    if(statusCode == 200) {
+                    if (statusCode == 200) {
                         def messageService = new MessageService()
                         messageService.clearMessages()
-                        Store.ownerMail=null
-                        Store.dialogPartnerMail=null
+                        Store.ownerMail = null
+                        Store.dialogPartnerMail = null
                         result = true
                     }
             }

@@ -10,5 +10,5 @@ class Store {
     /**
      * This class should not be instantiated
      */
-    private Store(){}
+    private Store() {}
 }

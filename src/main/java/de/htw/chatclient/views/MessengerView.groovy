@@ -6,10 +6,7 @@ import de.htw.chatclient.service.MessageService
 import de.htw.chatclient.service.OnlineUserService
 import groovyx.javafx.SceneGraphBuilder
 import javafx.scene.control.Alert
-import javafx.scene.control.DatePicker
-import javafx.scene.control.TextField
 
-import java.text.DateFormat
 import java.text.SimpleDateFormat
 
 
@@ -30,10 +27,9 @@ class MessengerView {
                         hyperlink(text: "Ausloggen") {
                             onMouseClicked { e ->
                                 def logout = new LogoutService()
-                                if (logout.logout()){
+                                if (logout.logout()) {
                                     pane.getChildren().setAll(LoginView.build(sceneGraphBuilder))
-                                }
-                                else {
+                                } else {
                                     showAlert(Alert.AlertType.ERROR, "Fehler", "Logoutfehler", "Huch, irgendwas hat nicht geklappt!")
                                 }
                             }
@@ -57,21 +53,21 @@ class MessengerView {
                             def onlineuser = onlineUserService.getOnlineUser().keySet()
                             int i = 0
                             for (String mail : onlineuser) {
-                                if(!mail.equals(Store.ownerMail)){
+                                if (!mail.equals(Store.ownerMail)) {
                                     String color = "grey"
-                                    if(mail.equals(Store.dialogPartnerMail)) {
+                                    if (mail.equals(Store.dialogPartnerMail)) {
                                         color = "#FF11DD"
                                     }
-                                hyperlink(id: mail, text: mail, row: i, style: "-fx-text-fill: $color") {
-                                    onMouseClicked { e ->
-                                        String hyperMail = e.source.text
-                                        println("Klick auf $hyperMail")
-                                        Store.dialogPartnerMail = hyperMail
-                                        println("dialogPartnerMail auf $Store.dialogPartnerMail gesetzt")
-                                        pane.getChildren().setAll(MessengerView.build(sceneGraphBuilder))
+                                    hyperlink(id: mail, text: mail, row: i, style: "-fx-text-fill: $color") {
+                                        onMouseClicked { e ->
+                                            String hyperMail = e.source.text
+                                            println("Klick auf $hyperMail")
+                                            Store.dialogPartnerMail = hyperMail
+                                            println("dialogPartnerMail auf $Store.dialogPartnerMail gesetzt")
+                                            pane.getChildren().setAll(MessengerView.build(sceneGraphBuilder))
+                                        }
+                                        i++
                                     }
-                                    i++
-                                }
                                 }
                             }
                         }
@@ -86,9 +82,9 @@ class MessengerView {
                         borderPane(style: "-fx-background-color: white") {
 
 
-                            if (Store.dialogPartnerMail.equals(null)){
+                            if (Store.dialogPartnerMail.equals(null)) {
                                 label(text: "Klicke einen Onlineuser an, um Chat zu starten")
-                            }else {
+                            } else {
 
                                 top() {
                                     scrollPane(style: "-fx-background-color: white; -fx-min-width: 800; -fx-max-width: 800; -fx-min-height: 500; -fx-max-height: 500;") {
@@ -100,19 +96,18 @@ class MessengerView {
                                             for (Message actual : conversation) {
                                                 String messageColor = "#29CCE9"
 
-                                                if(actual.senderMail.equals(Store.dialogPartnerMail)) {
+                                                if (actual.senderMail.equals(Store.dialogPartnerMail)) {
                                                     messageColor = "#FF11DD"
                                                 }
                                                 label(text: actual.senderMail, row: i, column: 0, style: "-fx-text-fill: $messageColor")
 
                                                 // Datums- und Uhrzeit-Label
 
-                                                label(id:"datum", text: actual.time, row: i, column: 1)
+                                                label(id: "datum", text: actual.time, row: i, column: 1)
 
                                                 //DateFormat datePicker = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
                                                 //String time = "datum.getTimeString()"
                                                 //datum.getTimeString()
-
 
 
                                                 i++

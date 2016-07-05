@@ -20,15 +20,10 @@ class RegisterService {
     def register(String name, String mail, String password) {
         def http = new HTTPBuilder(Util.URL)
         def postBody = [name: name, mail: mail, password: password] // will be url-encoded
-
         boolean result = false
-
-
         try {
             http.post(path: '/register', body: postBody,
                     requestContentType: MediaType.APPLICATION_JSON) { resp ->
-
-                // TODO anhand des statusCode booelan an Oberfläche übergeben
                 println "POST Success: ${resp.statusLine}"
                 if (resp.statusLine.statusCode == 200) {
                     result = true
