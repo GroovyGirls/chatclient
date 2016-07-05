@@ -83,7 +83,7 @@ class MessengerView {
 
                 center() {
                     hbox(style: "-fx-background-color: white", alignment: "CENTER") {
-                        borderPane(style: "-fx-background-color: grey") {
+                        borderPane(style: "-fx-background-color: white") {
 
 
                             if (Store.dialogPartnerMail.equals(null)){
@@ -129,7 +129,7 @@ class MessengerView {
 
 
                                 bottom() {
-                                    hbox() {
+                                    hbox(style: "-fx-background-color: grey") {
                                         gridPane(hgap: 20, vgap: 12, padding: 30, alignment: "CENTER") {
                                             textArea(id: "messagetextfield", promptText: "Nachricht...", column: 0)
                                             messagetextfield.setPrefWidth(600)
